@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="dmwebDatabase">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/dmwebDataSource</jta-data-source>
+		<class>br.com.procempa.dmweb.entity.Anexo</class>
+		<class>br.com.procempa.dmweb.entity.AnexoFile</class>
+		<class>br.com.procempa.dmweb.entity.CurvaNivelRuido</class>
+		<class>br.com.procempa.dmweb.entity.Documento</class>
+		<class>br.com.procempa.dmweb.entity.Face</class>
+		<class>br.com.procempa.dmweb.entity.Macrozona</class>
+		<class>br.com.procempa.dmweb.entity.Observacao</class>
+		<class>br.com.procempa.dmweb.entity.PavimentacaoPasseio</class>
+		<class>br.com.procempa.dmweb.entity.Quarteirao</class>
+		<class>br.com.procempa.dmweb.entity.ReferenciaAlinhamento</class>
+		<class>br.com.procempa.dmweb.entity.Regime</class>
+		<class>br.com.procempa.dmweb.entity.RegistroImovel</class>
+		<class>br.com.procempa.dmweb.entity.SituacaoLogradouro</class>
+		<class>br.com.procempa.dmweb.entity.TipoObservacao</class>
+		<class>br.com.procempa.dmweb.entity.Usuario</class>
+ 
+		<class>br.com.procempa.dmweb.entity.legado.Circulacao</class>
+		<class>br.com.procempa.dmweb.entity.legado.DivisaoTerritorial</class>
+		<class>br.com.procempa.dmweb.entity.legado.DivisaoTerritorial130</class>
+		<class>br.com.procempa.dmweb.entity.legado.ExpedienteUnico</class>
+		<class>br.com.procempa.dmweb.entity.legado.PredioRelacionado</class>
+		<class>br.com.procempa.dmweb.entity.legado.RegimeUrbanistico</class>
+		<class>br.com.procempa.dmweb.entity.legado.RegimeUrbanistico0100</class>
+		<class>br.com.procempa.dmweb.entity.legado.RegimeUrbanistico0300</class>
+		<properties>			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DB2Dialect" />
+			<!--<property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="none"/>
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.default_schema" value="sqldba" />
+			<!-- <property name="hibernate.transaction.flush_before_completion" value="false"/> -->
+			
+			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+
+			<property name="jboss.entity.manager.factory.jndi.name"
+				value="java:/dmwebEntityManagerFactory" />
+ 
+                            
+		</properties>
+		     
+	</persistence-unit>
+</persistence>

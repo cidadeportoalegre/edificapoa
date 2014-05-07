@@ -1,0 +1,15 @@
+action.package=org.domain.dmwebweb.session
+action.sources=/dmweb-web/src/main/resources
+eclipse.preferences.version=1
+model.package=org.domain.dmwebweb.entity
+model.sources=/dmweb-web/src/main/resources
+seam.ear.project=dmweb-web
+seam.ejb.project=dmweb-web
+seam.project.connection.profile=Bloqueto
+seam.project.deployment.type=ear
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/dmweb-web/src/main/webapp
+seam.test.creating=false
+seam.test.project=dmweb-web
+test.package=org.domain.dmwebweb.test
+test.sources=/dmweb-web/src/main/resources

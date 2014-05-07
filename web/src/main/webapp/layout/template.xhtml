@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib">
+<head> 
+	<title>Declaração Municipal - Web</title>
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	<link href="stylesheet/theme2.css" rel="stylesheet" type="text/css" />
+	
+ 
+  
+     <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/dojo/dijit/themes/claro/claro.css"/>
+    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/dojo/dojox/layout/resources/FloatingPane.css"/>	
+    <link rel="stylesheet" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/esri/css/esri.css"/>
+ 
+	<script language="JavaScript" src="#{facesContext.externalContext.requestContextPath}/javascript/javascript.js" type="text/JavaScript" charset="utf-8"/>	
+	<script language="JavaScript" src="#{facesContext.externalContext.requestContextPath}/javascript/jquery.maskMoney.js" type="text/JavaScript" charset="utf-8"/>
+	<script language="JavaScript" src="#{facesContext.externalContext.requestContextPath}/javascript/jquery.meio.mask.js" type="text/JavaScript" charset="utf-8"/>	
+	<script language="JavaScript" type="text/JavaScript">
+	//evita o back do browser
+	window.history.forward(1);
+
+
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	 
+	  ga('create', 'UA-13113255-50', 'rs.gov.br');
+	  ga('send', 'pageview');
+ 
+		
+	</script>
+    <style>
+ 		.rich-tool-tip {
+		    background-color: #eef2f8;
+		    border-color: #7196c8;
+            padding: 1px;
+            font-size: 8;
+		}
+</style>
+</head>
+<body> 
+	<f:loadBundle basename="messages_pt" var="msgs"/>
+	
+	<rich:modalPanel id="panelStatus" autosized="true">  
+		<h:graphicImage url="img/loading.gif" style="border:0px;"/> 
+		<h:outputText value="Carregando…" /> 
+	</rich:modalPanel> 
+	
+	<a4j:status id="statusCarregarModalPanel" 
+		onstart="Richfaces.showModalPanel('panelStatus');" 
+		onstop="#{rich:component('panelStatus')}.hide()" >
+	</a4j:status>
+		
+	<!--  abre container  --> 
+	<div id="container"> 
+		
+	    <ui:insert name="header">
+		    <ui:include src="header.xhtml" >
+		    	<ui:param name="projectName" value="Declaração Municipal"/>
+		    </ui:include>
+	    </ui:insert>
+		
+		<!-- abre conteudo --> 
+		<div id="conteudo">
+			<ui:insert name="body"/>
+			<ui:include src="/layout/modalPanelError.xhtml" />
+		</div>
+		<!-- fecha conteudo --> 
+		
+		<!-- abre limpa rodape  --> 
+		<div id="limpa_rodape"></div> 
+		<!--  fecha limpa rodape --> 
+    </div>
+	<!--  fecha container  --> 
+		
+	<!-- abre rodape --> 
+	<div id="rodape">
+ 
+		<ui:insert name="footer">
+		   	<ui:include src="footer.xhtml"/>
+		</ui:insert>
+	</div>	
+	<!--   fecha rodape-->
+</body>
+</html>

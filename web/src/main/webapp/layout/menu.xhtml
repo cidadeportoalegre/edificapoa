@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib">
+		
+ 
+	<h:form id="menu">
+	<rich:toolBar styleClass="barraMenu" rendered="#{identity.loggedIn and not s:hasRole('Convidado')}">
+		<rich:toolBarGroup location="left">
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Início" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem value="Gerente de Programa" action="navegacaoPrograma" rendered="#{s:hasRole('Gerente de Programa')}" >
+					<s:conversationPropagation type="none"/>
+				</rich:menuItem>	
+				<rich:menuItem value="Líder Ação/Etapa/Subetapa" action="homeLider" rendered="#{s:hasRole('Líder de Ação') or s:hasRole('Líder de Etapa') or s:hasRole('Líder de Subetapa')}">
+					<s:conversationPropagation type="none"/>
+				</rich:menuItem>
+				<rich:menuItem value="Assistente" action="homeAssistente" rendered="#{s:hasRole('Assistente')}" >
+					<s:conversationPropagation type="none"/>
+				</rich:menuItem>
+				<rich:menuItem value="Órgão do Usuário" action="homeUsuarioOrgao" >
+					<s:conversationPropagation type="none"/>
+				</rich:menuItem>
+			</rich:dropDownMenu>
+		</rich:toolBarGroup>
+		
+		<rich:toolBarGroup location="right">		
+			<rich:menuItem action="ata" value="Atas" submitMode="ajax" immediate="true" styleClass="rich-ddmenu-label rich-ddmenu-label-unselect">
+				<s:conversationPropagation type="none" />
+			</rich:menuItem>
+			<rich:dropDownMenu rendered="#{s:hasRole('Administrador') or s:hasRole('Assistente') or s:hasRole('Gerente de Programa')}">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Planilhas" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem action="xlsIndicadorObjetivo" value="Indicador Objetivo" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsIndicadorPrograma" value="Indicador Programa" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsIndicadorAcao" value="Indicador Ação" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsIndicadorEtapa" value="Indicador Etapa" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsIndicadorSubetapa" value="Indicador Subetapa" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsPlanilhaAcoes" value="Ações, Etapas e Subetapas" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsOrcamentoAcoes" value="Orçamento das Ações">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsUsuarios" value="Usuários do Sistema" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsResumoProgramas" value="Totais de Ações, Etapas e Subetapas" target="planilha">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsEgpeAta" value="EGPE Ata Ação/GTE" rendered="#{s:hasRole('Administrador') or s:hasRole('Gerente de Programa')}">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="xlsEgpeAtaTotal" value="EGPE Ata Total" rendered="#{s:hasRole('Administrador') or s:hasRole('Gerente de Programa')}">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>				
+				<rich:menuSeparator id="menuSeparatorBI" rendered="#{s:hasRole('Administrador')}" />
+				<rich:menuItem value="Procempa BI" onclick="chamadaBI()" rendered="#{s:hasRole('Administrador')}" />
+			</rich:dropDownMenu>
+						
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Consultas" />
+					</h:panelGroup>
+				</f:facet>		
+				<rich:menuItem action="etapasSubetapasPL" value="Etapas e Subetapas do PL" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>				
+				<rich:menuItem action="demandasOp" value="Demandas OP" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+			</rich:dropDownMenu>
+						
+	
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Gerenciamento" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem action="projetoEspecial" value="Projeto Especial" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="bairro" value="Bairro" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="tipoAcao" value="Tipo de Ação" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="orgao" value="Orgão" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="regiaoOp" value="Região OP" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="objetivo" value="Objetivo" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="eixoAtuacao" value="Eixo Atuação" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="unidadeMedida" value="Unidade Medida" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="tipoReuniao" value="Tipo de Reunião" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="trocaProgramaAcao" value="Troca de Programa da Ação" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuSeparator id="menuSeparator1" />
+				<rich:menuItem action="usuarioPortal" value="Usuário" submitMode="ajax">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>
+				<rich:menuItem action="role" value="Perfil" submitMode="ajax" ajaxSingle="true">
+					<s:conversationPropagation type="none" />
+				</rich:menuItem>				
+			</rich:dropDownMenu>
+ 
+			
+		</rich:toolBarGroup>
+	</rich:toolBar>
+	</h:form>
+</ui:composition>

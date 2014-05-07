@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+                
+    <style>
+
+	.rich-toolbar {
+		background-color : #414042;;
+                background-image: none;
+         }
+ </style>
+
+</head>
+    <body>			
+     <div id="header" dojotype="dijit.layout.ContentPane" region="top">
+          
+		  	<h:panelGrid columns="2" style="width: 100%;">
+               <a href="http://www.portoalegre.rs.gov.br" target="prefa">
+			       <img src="img/logoPOA.jpg" border="0" alt="Prefeitura de Porto Alegre" id="logo_pmpa_cor" title="Prefeitura de Porto Alegre"/>
+		       </a>
+			   <h:outputText value="DECLARAÇÃO MUNICIPAL PDDUA - DM" style="text-align:right;font-family: Verdana,sans-serif; font-size: 18px; font-weight: bold;"/>	
+			</h:panelGrid>
+	<a4j:form id="headerForm">
+			
+			 <rich:toolBar height="34" itemSeparator="line"  >
+		 			<rich:toolBarGroup location="right" itemSeparator="line">
+						<a href="home.seam" target="_self">
+							<img src="img/home.png" border="0" id="idHome" title="Declaração Municiapal" style="margin: 1px 0px 0px 1px; right; height:20px;" />
+						</a>
+					</rich:toolBarGroup>
+			 </rich:toolBar>
+	</a4j:form>			
+    </div>
+	<a4j:form id="legalForm">
+	     <h:panelGrid  columns="2">
+
+				<h:panelGroup layout="block" >
+					<rich:spacer width="290px"/>
+				</h:panelGroup>
+				<h:panelGroup layout="block" style="align:center;">
+				
+				    <rich:spacer height="80px"/>
+				    
+				    <h:panelGrid columns="1" style="text-align:left;">
+								<h:outputText value=" Consulta à legislação " />
+								<rich:spacer height="20px"/>
+ 
+					</h:panelGrid>
+				    <rich:panel>
+				    
+ 						Clique nos símbolos abaixo para acessar...
+				    </rich:panel>				
+ 				 
+			           <img src="img/dmae.jpg" border="0" alt="Dmae" id="logo_dmae" title="Dmae"/>
+			           <img src="img/dep220.jpg" border="0" alt="Dep" id="logo_dep" title="Dep"/>
+			           <img src="img/smam220.jpg" border="0" alt="Smam" id="logo_smam" title="Smam"/>
+		         
+			 	</h:panelGroup>	
+		</h:panelGrid>
+	</a4j:form>
+    
+		
+</body>
+</html>

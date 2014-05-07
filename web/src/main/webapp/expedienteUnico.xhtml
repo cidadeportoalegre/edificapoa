@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib">
+    <head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />    
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<!--         
+        <meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+-->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+        <title>SMURB - DM</title>
+        
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300, 600' rel='stylesheet' type='text/css'/>
+        
+        <!-- 
+		<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/stylesheet/theme.css" />
+         -->
+        <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.0/js/dojo/dijit/themes/claro/claro.css"/>
+        <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/esri/css/esri.css"/>
+		<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/stylesheet/dmweb.css" />
+        <script type="text/javascript">
+           var djConfig = {
+              parseOnLoad: true,
+              packages: [{
+                "name": "agsjs",
+                "location": location.pathname.replace(/\/[^/]+$/, "")+'/build/agsjs'
+               //"location": 'http://gmaps-utility-gis.googlecode.com/svn/tags/agsjs/2.02/xbuild/agsjs' // for xdomain load
+              }]
+            };
+        </script>
+<script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.1"/>
+
+<script type="text/JavaScript" src="#{facesContext.externalContext.requestContextPath}/javascript/jquery.meio.mask.js"  language="JavaScript" charset="utf-8"/>
+<script type="text/javascript">
+
+	var ueu_ = #{documentoAction.divisaoTerritorial.divisaoTerritorialId.mzUeuAsString};
+	var qrt_ = #{documentoAction.divisaoTerritorial.divisaoTerritorialId.quarteirao};
+	
+	function showModalPanel() {
+	
+		  // Abre o painel Declaração municipal
+	 	 dijit.byId("accordionId").selectChild( dijit.byId("declaracao") );
+	
+		// #{rich:component('modalPanel')}.show();
+	
+	 }
+	function thumbnailUrl() {
+		return '#{facesContext.externalContext.requestContextPath}';
+	}
+	
+	function urlBaseMapServer() {
+		return '#{urlBaseMapServer}';
+	}
+	
+	function urlBaseMap5000() {
+		return '#{urlBaseMap5000}';
+	}	
+	function camadaQuarteirao() {
+		return '#{camada_quarteirao}';
+	}
+	function mosaicoAlinhamento() {
+		return #{mosaico_1_1000};
+	}
+	function mosaicoDep() {
+		return #{mosaico_dep};
+	}
+	function camadaDmae() {
+		return #{camada_dmae};
+	}
+
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		 
+		  ga('create', 'UA-13113255-50', 'rs.gov.br');
+		  ga('send', 'pageview');
+	 
+	
+</script>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+function showReport(conversationId) {
+	var reportWin = window.open('dmImpressao.seam' + '?cid=' + conversationId); 
+	if (!reportWin) { 
+		
+		alert("Could not open the report window. Please disable popup blocking for this website and try again."); 
+	} 
+} 
+// ]]> 
+</script> 
+
+
+
+
+<script type="text/JavaScript" src="#{facesContext.externalContext.requestContextPath}/javascript/dmweb.js"  language="JavaScript" charset="utf-8"/>
+
+</head>
+    <body class="claro">
+    <div id="topo" >
+	 <div id="barrinha"></div>    
+     <div  dojotype="dijit.layout.ContentPane" region="top">
+
+		  	<h:panelGrid style="width:100%;" columns="2" rendered="${ambiente == 'producao'}">
+				<a href="index.html"><div id="logo_edifica"><img id="dm" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/edifica_peq.png"/></div></a>
+				<div id="logo_pmpa"><a href="http://www.portoalegre.rs.gov.br" target="_blank"><img id="pmpa" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/prefeitura.png"/></a></div>
+<div id="menu">
+<ul>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?p_secao=8&amp;mbv=0" target="_blank">SOBRE</a></li>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?reg=1&amp;p_secao=11&amp;mbv=0" target="_blank">PERGUNTAS FREQUENTES</a></li>
+<li><a href="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/docs/MANUAL AJUDA- DMWEB.pdf" target="_blank">AJUDA</a></li>
+</ul></div>
+
+			</h:panelGrid>
+		  	<h:panelGrid style="width:100%;" columns="2"  rendered="${ambiente != 'producao'}">
+				<a href="searchBox.seam"><div id="logo_edifica"><img id="dm" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/edifica_peq.png"/></div></a>
+				<div id="logo_pmpa"><a href="http://www.portoalegre.rs.gov.br" target="_blank"><img id="pmpa" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/prefeitura.png"/></a></div>
+<div id="menu">
+<ul>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?p_secao=8&amp;mbv=0" target="_blank">SOBRE</a></li>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?reg=1&amp;p_secao=11&amp;mbv=0" target="_blank">PERGUNTAS FREQUENTES</a></li>
+<li><a href="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/docs/MANUAL AJUDA- DMWEB.pdf" target="_blank">AJUDA</a></li>
+</ul></div>
+			</h:panelGrid>
+ 	</div>				
+
+   	<div id="title_bar"></div><div id="titulo">MAPAS</div>
+
+
+
+
+		
+						
+            </div>
+            <a4j:form id="listForm" >
+			
+			 <rich:toolBar height="34" itemSeparator="line"  styleClass="fundoBrancoTransp">
+	            <rich:toolBarGroup>
+					<h:outputText id="logradouro" value="#{documentoAction.divisaoTerritorial.logradouro}, #{documentoAction.criterioNumero}" styleClass="logradouro"/> 
+
+	            </rich:toolBarGroup>
+	            <rich:toolBarGroup >
+					<h:outputText id="bairro" value="Bairro #{documentoAction.criterioBairro}" styleClass="bairro"/> 
+					<a href="searchBox.seam" target="_self"><img id="novaConsulta" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/lupa.png" title="Nova consulta" style="margin: 1px 0px 0px 1px; right;"/></a>	 													
+	            </rich:toolBarGroup>	
+	            <rich:toolBarGroup >
+					<a4j:commandButton id="getReportLink"  image="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/images/print.png" action="#{documentoAction.imprimeDM}" oncomplete="showReport('#{conversation.id}')" title="Imprimir DMI" style="margin: 1px 0px 0px 1px; right;">
+					
+					</a4j:commandButton>
+	            </rich:toolBarGroup>	
+	            
+	            <rich:toolBarGroup location="right" >
+	            	<h:panelGrid id="macrozona" styleClass="macrozona">
+						<h:panelGrid columns="3" style="text-align:center;">
+							<h:outputText value="MZ" style="font-style:normal" />	            								
+							<h:outputText value="UEU" style="font-style:normal" />	            															
+							<h:outputText value="QTR" style="font-style:normal" />	            															
+							<h:outputText value="#{documentoAction.macrozona}" style="font-style:normal" />	            		
+							<h:outputText value="#{documentoAction.ueu}" style="font-style:normal" />	            		
+							<h:outputText value="#{documentoAction.quarteirao}" style="font-style:normal" />
+						</h:panelGrid>						
+	            	</h:panelGrid>                       
+	            </rich:toolBarGroup>
+	            <rich:toolBarGroup location="right" >      
+					<rich:dropDownMenu id="idDropDownMenuFace"  hideDelay="1600" direction="bottom-left" onexpand="showMenu();"  jointPoint="tr" horizontalOffset="0" verticalOffset="0" event="onclick" styleClass="quarteirao">
+						<f:facet name="label">
+						    <h:graphicImage value="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/quarteirao_3.png" title="Selecione as Faces"/>
+						</f:facet>					
+				            <rich:menuItem id="menuFaces" onclick="return false;" >
+				            	<a4j:region>
+ 								  <h:panelGrid columns="1" style="text-align:left;">										 				            	
+									<rich:dataList var="varFace"  value="#{faceList}" type="none" title="Faces do Quarteirão" style="align:left;">
+										 <h:panelGrid columns="3">
+							 	
+											<h:selectBooleanCheckbox value="#{varFace.faceSelecionada}" title="Selecionar Face"/>
+											<h:panelGrid columns="1" style="width:270px;text-align:left;">										 
+											     <h:outputText value="#{varFace.logradouro}"/>
+											     <h:outputText value="Lim. #{varFace.numeracaoInvertida == 'N' ? varFace.limiteFinalAsString : varFace.limiteInicialAsString}  - #{varFace.numeracaoInvertida == 'N' ? varFace.limiteInicialAsString : varFace.limiteFinalAsString}" />
+											</h:panelGrid>
+											<h:panelGrid style="width:100px;text-align:left;">
+												 <h:outputText value="Situação: #{varFace.situacaoLogradouro}"/>												     												     
+											</h:panelGrid> 
+										</h:panelGrid>
+									</rich:dataList>
+				                	<a4j:commandButton id="montaDMBtnMenu" action="#{documentoAction.montaDM}" reRender="pnlDocumento" styleClass="botao"
+			  				 		 type="image" image="/img/ATUALIZAR_FORTE.png"
+									 onmouseover="this.src='img/ATUALIZAR.png'"
+									 onmouseout="this.src='img/ATUALIZAR_FORTE.png'"
+									 onmousedown="this.src='img/ATUALIZAR_FRACO.png'"/>
+								  </h:panelGrid>	 
+				            	</a4j:region>
+				            </rich:menuItem>
+				             
+				    </rich:dropDownMenu>
+	            </rich:toolBarGroup>
+	 			<rich:toolBarGroup location="right" itemSeparator="line" >
+	 				<a href="#" onclick="executeTask( false );"><img id="reposiciona" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/reposicionar.png" title="Reposicionar o quarteirão no mapa"/></a>	 			
+				</rich:toolBarGroup>
+
+<!-- 	            <rich:toolBarGroup>
+			         <a href="#" onclick="executeTask( false );">Reposicionar o quarteirão no mapa</a> 
+	            </rich:toolBarGroup>
+  -->
+	        </rich:toolBar>
+ 
+            <rich:toolTip id="tooltipId" attached="false" value="Selecione as Faces no menu Quarteirão"/>
+ 
+				<rich:modalPanel id="modalPanel" height="250" width="350" style="overflow:auto">
+				        <f:facet name="header">Faces do Quarteirão</f:facet>
+				        
+				        <f:facet name="controls"> 
+				                <h:graphicImage value="img/close.png" style="cursor:pointer" onclick="#{rich:component('modalPanel')}.hide()" />
+				        </f:facet>
+				        
+		            	<a4j:region>
+							<rich:dataList var="varFace"  value="#{faceList}" type="none" title="Faces do Quarteirão">
+								 <h:panelGrid columns="2" style="cellpadding:30px;">
+									<h:selectBooleanCheckbox   immediate="false" value="#{varFace.faceSelecionada}" title="Selecionar Face" >
+										<a4j:support event="onchange" action="#{documentoAction.montaDM}" ajaxSingle="true" reRender="pnlDocumento"/>
+									</h:selectBooleanCheckbox>
+									<h:panelGroup>
+									     <h:outputText value="#{varFace.logradouro}"/><br/>
+									     <h:outputText value="Lim. #{varFace.numeracaoInvertida == 'N' ? varFace.limiteFinalAsString : varFace.limiteInicialAsString}  - #{varFace.numeracaoInvertida == 'N' ? varFace.limiteInicialAsString : varFace.limiteFinalAsString}" />
+				 					    <rich:spacer width="10px"/>
+									<h:outputText value="Situação: #{varFace.situacaoLogradouro}" styleClass="label"/>
+								   </h:panelGroup>
+								</h:panelGrid>
+							</rich:dataList>
+		            	</a4j:region>
+				        <br />
+				        <br />
+				        <a href="#" onclick="#{rich:component('modalPanel')}.hide()">Fechar</a>
+				        <br />
+				        <br />
+ 
+				</rich:modalPanel>
+
+	        
+            </a4j:form>
+        
+	<!-- fecha cabecalho-->
+        <div id="content" data-dojo-type="dijit.layout.BorderContainer" design="sidebar" gutters="true" style="width: 100%; margin: 0;border:none;" >
+            <div id="map" data-dojo-type="dijit.layout.ContentPane" region="center" style="border: none;" >
+	            <span id="north"  style="position:absolute; right:20px; top:20px; color:#000; z-index:50;">
+	                  <img id='img' src='img/norte2.png' />
+	            </span>
+            </div>
+            <div data-dojo-type="dijit.layout.ContentPane" id="leftPane" region="left" splitter="true" style="border: none; width:400px; color=#000;" >
+        		<div data-dojo-type="dijit.layout.AccordionContainer"  id="accordionId">
+          			<div data-dojo-type="dijit.layout.ContentPane"  id="declaracao" 
+					     data-dojo-props="title:'Regime Urbanístico', selected:true" style="border: none;">
+					     <a4j:outputPanel id="pnlDocumento" style="width:100%;height:100%;">
+			  
+							<ui:repeat var="varItemDM"	value="#{documentoAction.itemDMList}" >
+								<h:outputText value="#{varItemDM.logradouro}" /><br/>	
+								<h:outputText value="#{varItemDM.situacaoLogradouro}" /><br/>	
+								<ui:repeat var="varPredioRelacionado"	value="#{varItemDM.predioRelacionadoList}" >
+	                				<h:outputText value="#{varPredioRelacionado.descricao}" /><br/>
+       						    </ui:repeat>
+								<ui:repeat var="varObservacaoFace"	value="#{varItemDM.observacaoFaceList}" >
+	                				<h:outputText value="#{varObservacaoFace.descricao}" /><br/>
+       						    </ui:repeat>
+								
+								
+								<h:panelGrid style="text-align:left;">
+
+	       						  <rich:dataList var="varRU"  value="#{varItemDM.regimeUrbanisticoList}" rows="5" type="none" title="Regime Urbanístico">	
+
+								  <h:outputText value="#{varItemDM.textoRegime}"  rendered="#{varRU.indice == 1}"/>		        
+
+									<h:panelGrid columns="5" style="text-align:center;">
+						                <h:outputText value="" styleClass="label"/>	
+							                <h:outputText value="DENS." styleClass="label"/>
+							                <h:outputText value="ATIV." styleClass="label"/>				                
+							                <h:outputText value="APROV." styleClass="label"/>
+							                <h:outputText value="VOL." styleClass="label"/>
+							                
+						                <h:outputText value="Subunidade #{varRU.subunidade}" />
+						                
+						               	 <h:outputLink onclick="chamadaEPM( 'http://lproweb.procempa.com.br/pmpa/prefpoa/spm/usu_doc/anexo_4revisao.pdf');return false;"
+						               				   rendered="#{varRU.densidade != 99}" >							
+	    	            					<h:outputText value="#{varRU.densidade}" style="text-align:center;" />
+						                </h:outputLink>
+	    	            				<h:outputText value="-" style="text-align:center;" rendered="#{varRU.densidade == 99}"/>	    	            					
+	    	            						
+						                <h:outputLink onclick="chamadaEPM( 'http://lproweb.procempa.com.br/pmpa/prefpoa/spm/usu_doc/anexo_5revisao.pdf');return false;"
+						                	          rendered="#{varRU.atividade != 99.99}" >							
+			                				<h:outputText value="#{varRU.atividade}" style="text-align:center;" >
+ 			                				   <f:convertNumber maxFractionDigits="1" minFractionDigits="1"/>
+ 			                				</h:outputText>
+						                </h:outputLink>
+		                				<h:outputText value="-" style="text-align:center;" rendered="#{varRU.atividade == 99.99}"/>	
+		                				
+						                <h:outputLink onclick="chamadaEPM( 'http://lproweb.procempa.com.br/pmpa/prefpoa/spm/usu_doc/anexo_6revisao.pdf');return false;" 
+						                			  rendered="#{varRU.indiceAproveitamento != '999'}">							
+		                					<h:outputText value="#{varRU.indiceAproveitamento}" style="text-align:center;" />
+						                </h:outputLink>
+	                					<h:outputText value="-" style="text-align:center;" rendered="#{varRU.indiceAproveitamento == '999'}"/>		                											                
+
+										<h:outputLink onclick="chamadaEPM( 'http://lproweb.procempa.com.br/pmpa/prefpoa/spm/usu_doc/anexo_7revisao.pdf');return false;" 
+			 										  rendered="#{varRU.volumetria != '999 '}">
+		                					<h:outputText value="#{varRU.volumetria}" style="text-align:center;" />
+						                </h:outputLink>
+	                					<h:outputText value="-" style="text-align:center;" rendered="#{varRU.volumetria == '999 '}"/>		                						                			 
+	
+									</h:panelGrid>
+
+									<h:panelGrid columns="4" rendered="#{varItemDM.regimeUrbanisticoList.size() > 1}">
+						                <h:outputText value="Limite inicial:" style="text-align:left;"/>
+						                <h:outputText value="#{varRU.regimeUrbanisticoId.regUrbLimInicialAsString}" style="text-align:right;"  />
+						                <h:outputText value="Distância: "  style="text-align:left;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial != 0}" />					                
+						                <h:outputText value=""  style="text-align:left;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial == 0}" />					                						                
+						                <h:outputText value="#{varRU.regimeUrbanisticoId.regUrbDistInicialAsString} m" style="text-align:right;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial != 0}" />
+						                <h:outputText value="" style="text-align:right;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial == 0}" />						                
+						                <h:outputText value="Limite final:"  style="text-align:left;"/>
+						                <h:outputText value="#{varRU.regUrbLimFinalAsString} " style="text-align:right;"  />
+						                <h:outputText value="Distância: "  style="text-align:left;" rendered="#{varRU.regUrbDistFinal != 0}" />					                
+						                <h:outputText value=""  style="text-align:left;" rendered="#{varRU.regUrbDistFinal == 0}" />					                						                
+						                <h:outputText value="#{varRU.regUrbDistFinalAsString} m" style="text-align:right;" rendered="#{varRU.regUrbDistFinal != 0}" />
+					                </h:panelGrid>
+
+	                				
+	                				<h:panelGrid columns="1" style="text-align:left;">
+
+	                					<h:outputText value="* Área de ocupação intensiva" rendered="#{documentoAction.macrozona != 8 and documentoAction.macrozona != 9 }" />
+
+		                				<h:outputText value="* #{varRU.obsReg1Descricao}" rendered="#{!empty varRU.obsReg1Descricao}" />
+	    	            				<h:outputText value="* #{varRU.obsReg2Descricao}" rendered="#{!empty varRU.obsReg2Descricao}" />
+		    	           				<h:outputText value="* #{varRU.obsReg3Descricao}" rendered="#{!empty varRU.obsReg3Descricao}" />
+	            	    				<h:outputText value="* #{varRU.obsReg4Descricao}" rendered="#{!empty varRU.obsReg4Descricao}" />
+	                					<h:outputText value="* #{varRU.obsReg5Descricao}" rendered="#{!empty varRU.obsReg5Descricao}" />
+	                					<h:outputText value="* #{varRU.obsReg6Descricao}" rendered="#{!empty varRU.obsReg6Descricao}" />
+	                					
+										<h:panelGrid rendered="#{!empty varRU.observacoesSubUnidadeList}">
+											<ui:repeat var="varObsSubUnidade"	value="#{varRU.observacoesSubUnidadeList}" >
+				                				<h:outputText value="* #{varObsSubUnidade}" /><br/>
+		    	   						    </ui:repeat>
+										</h:panelGrid>
+									
+	                				</h:panelGrid>	                				
+	                				
+	                			</rich:dataList>	
+	                			<rich:dataList var="varCirculacao"  value="#{varItemDM.circulacaoList}" rows="5" type="none" title="Circulação"> 	
+	                				<h:panelGrid  columns="1" style="text-align:left;" rendered="#{!empty varItemDM.circulacaoList}">
+	                				
+		                				<h:outputText value="#{varItemDM.textoCirculacao}" rendered="#{varCirculacao.indice == 1}" />
+		                				<h:panelGroup>
+		    	            				<h:outputText value="Alinhamento " />
+		    	            				<h:outputText value="#{varCirculacao.alinhamento}m  #{varCirculacao.referencia}" style="text-transform:lowercase;"
+		    	            							  rendered="#{varCirculacao.alinhamento != '00,00' and varCirculacao.alinhamento != '99,99'}"/>
+		    	            				<h:outputText value="não informado" style="text-transform:lowercase;" rendered="#{varCirculacao.alinhamento == '00,00'}"/>
+		    	            				<h:outputText value="variável" style="text-transform:lowercase;" rendered="#{varCirculacao.alinhamento == '99,99'}"/>		    	            				
+		    	            							  
+	    	            				</h:panelGroup>
+	    	            				
+										<h:panelGroup rendered="#{varItemDM.circulacaoList.size() > 1}">
+											<h:panelGrid columns="2">
+								                <h:outputText value="Limite inicial:" style="text-align:left;"/>
+								                <h:outputText value="#{varCirculacao.circulacaoId.alinhamInicialAsString}" style="text-align:right;"  />
+								                <h:outputText value="Limite final:"  style="text-align:left;"/>
+								                <h:outputText value="#{varCirculacao.circulacaoId.alinhamFinalAsString} " style="text-align:right;"  />
+								            </h:panelGrid>
+						                </h:panelGroup>
+	    	            				
+	            	    				<h:outputText value="Largura do logradouro #{varCirculacao.larguraLogradouro}m" 
+	            	    							  rendered="#{varCirculacao.larguraLogradouro != '00,00' and varCirculacao.larguraLogradouro != '99,99'}"/>
+	            	    				<h:outputText value="Largura do logradouro não informada" rendered="#{varCirculacao.larguraLogradouro == '00,00'}"/>
+	            	    				<h:outputText value="Largura do logradouro variável" rendered="#{varCirculacao.larguraLogradouro == '99,99'}"/>
+	            	    							  
+	                					<h:outputText value="Pavimentação do passeio conforme decreto 17.302/2011" />
+	                					
+		                				<h:panelGrid columns="1" style="text-align:left;">
+			                				<h:outputText value="* #{varCirculacao.observacao1AsString}" rendered="#{!empty varCirculacao.observacao1AsString}" />
+			                				<h:outputText value="* #{varCirculacao.observacao2AsString}" rendered="#{!empty varCirculacao.observacao2AsString}" />
+			                				<h:outputText value="* #{varCirculacao.observacao3AsString}" rendered="#{!empty varCirculacao.observacao3AsString}" />
+			                			</h:panelGrid>			
+	                					
+									</h:panelGrid>                				
+					        	</rich:dataList>					
+	        				  </h:panelGrid>									
+							</ui:repeat>
+					 
+
+
+					 
+			            </a4j:outputPanel>	
+          			</div>
+				<div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="title:'Mapas de Fundo'">
+						<div id="basemapGallery"></div>
+				</div>            		
+          			<div data-dojo-type="dijit.layout.ContentPane" id="legendPane" data-dojo-props="title:'Camadas'">
+            		        <div id="tocDiv"></div>
+          	 </div>
+        	</div>
+            </div>
+        </div>
+     <!-- info window tabs -->
+    <div id="tabs" dojoType="dijit.layout.TabContainer" style="width:385px;height:200px;">
+      <div id="depTab" dojoType="dijit.layout.ContentPane" title="DEP"></div>
+      <div id="alinhamentoTab" dojoType="dijit.layout.ContentPane" title="Alinhamento"></div>
+      <div id="dmaeEsgotoTab" dojoType="dijit.layout.ContentPane" title="Rede de Esgoto"></div>      
+      <div id="dmaeAguaTab" dojoType="dijit.layout.ContentPane" title="Rede de Água"></div>            
+    </div>
+    </body>
+</html>

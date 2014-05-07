@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+		<script>
+
+			var readyStateCheckInterval = setInterval(function() {
+			    if (document.readyState === "complete") {
+			    	#{rich:element('formMenuEscrituracao:idabrepdf')}.click();
+			        clearInterval(readyStateCheckInterval);
+			    }
+			}, 10);			  
+		</script>
+
+		<h:form id="formMenuEscrituracao"  style="padding: 1em 0em 2em;width:100%" prependId="false" target="_blank">	
+		
+			<rich:panel>
+				    
+ 						A carga do arquivo solicitado pode ser lenta,
+ 						quando completa, o resultado será mostrado em
+ 						seu visualizador (pdf) preferido.
+ 			</rich:panel>	
+				    
+		<a4j:region>
+			<a4j:commandButton id="idabrepdf" value="" action="#{documentoAction.abrePdf}" style="visibility:hidden;color:white;width:0;height:0;" >
+				<f:param  name="carta" value="#{documentoAction.carta}" />
+				<f:param  name="layerName" value="#{documentoAction.layerName}" />				
+			</a4j:commandButton>	
+		</a4j:region>
+ 
+ 
+	 </h:form>
+</ui:composition>

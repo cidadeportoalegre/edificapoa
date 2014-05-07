@@ -1,0 +1,33 @@
+#created on: Dec 3, 2010
+package br.com.procempa.rules
+
+#list any import classes here.
+import java.security.Principal;
+import org.jboss.seam.security.permission.PermissionCheck;
+import org.jboss.seam.security.Role;
+
+import br.com.procempa.*;
+
+
+#declare any global variables here
+
+
+
+
+rule "regra1"
+		
+	when
+		1+1==2
+	then 
+		true
+		
+end
+
+rule "Your Second Rule"
+	#include attributes such as "salience" here...
+	when
+		#conditions
+	then 
+		#actions
+		
+end

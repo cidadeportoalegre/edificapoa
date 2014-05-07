@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'/>
+        <!-- 
+        <link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/stylesheet/theme.css" />        
+         -->
+    <style>
+	
+	html,body {
+height:100%;
+text-align:center;
+font-family: 'Open Sans', sans-serif;
+font-weight:300;
+font-size:0.9em;
+color:#fff;
+margin:0;
+padding:0;
+background-image:url('http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/fundo_1.png');
+background-repeat:repeat-x;
+background-attachment: fixed;
+background-size: 1820px 1280px;
+background-position: left bottom;
+background-color:#393d1f;
+
+}
+
+	
+	
+	
+	img {
+		border: none;
+	}
+
+.fundoMarrom {
+	background:rgb(96,40,1); /* para funcionar a transparencia no IE */
+	background: transparent\9; /* para funcionar a transparencia no IE */
+	background:rgba(96,40,1,0.7);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99602801,endColorstr=#99602801); /* para funcionar a transparencia no IE */
+	zoom: 1;
+	
+}
+
+
+
+
+
+
+
+.msgErro {
+    background: #ECECEC;
+    color: #9D0000;
+    font-family: 'open sans',sans-serif;
+    font-size: 16px;
+    padding: 3px 17px;
+    position: absolute;
+    text-align: left;
+    top: 190px;
+
+}
+
+
+
+#header {
+
+ }
+
+	.rich-toolbar {
+		background-color : #4a6263;;
+        background-image: none;
+		border: none;
+	    padding: 0;
+	    height: 36px;
+        
+    }
+         
+	.rich-toolbar-item {
+		padding: 2px 19px 0;
+
+	}
+         
+	.rich-toolbar-item img {
+		padding: 0 5px 0 4px;
+}
+         
+   .rich-panel {
+	background: none;
+	border:none;
+}      
+
+    
+	.rich-panel-body {
+    	font-size: 13px;
+    	
+	}
+    
+#texto {
+	font-size: 17px;
+	line-height: 1.4;
+	margin-top: 30px;
+	width: 870px;
+	margin: 0 auto;
+	color:#fff;
+	line-height: 1.4;
+	clear: both;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.titulo {
+	font-size: 17px;
+	line-height: 1.4;
+	margin-top: 30px;
+	margin: 0 auto;
+	color:#fff;
+	line-height: 1.4;
+	clear: both;
+}	
+	
+
+#titulo {
+    font-size: 14px;
+    left: 155px;
+    position: absolute;
+    top: 63px;
+    left: 185px\9;
+	top:55px\9;    
+}
+	
+	
+	.logo {
+		width: 100%;
+		height:96px;
+		margin-bottom:0;
+		margin-bottom /\*/: -23px; /* IE 8 */
+ /*		margin-bottom: -23px\9;  IE 8 */
+		*margin-bottom: -23px;  /* IE 7 */
+		_margin-bottom: -23px;  /* IE 6 */
+	}
+    
+	#rodape {
+		bottom: 0;
+		margin-bottom: 17px;
+		margin-left: 27px;
+		position: absolute;
+		z-index: 9999;
+	}
+	
+
+
+#dm {
+    margin-bottom: 18px;
+    margin-top: 25px;
+	position:relative;    
+}
+ 
+ 
+ 
+ 
+#barrinha{
+	background-color: #454138;
+	margin: auto;
+	height:10px;
+	width: 100%;
+	
+	}
+
+ 
+#pmpa {
+    float: right;
+/*    margin-right: 22px; */
+    margin-top: 10px;
+	margin-top:11px\9;
+	margin-right:2px\9    
+}
+
+#logo_edifica {
+    float: left;
+    width: 250px;
+	height: 50px;
+	margin-top: -15px;
+}
+
+#logo_pmpa {
+    float: right;
+    width: 100px;
+}
+
+
+
+#rodape {
+	position: relative;
+	height: 30px;
+	clear:both;
+	z-index:9999;
+	background:rgb(255,255,255); /* para funcionar a transparencia no IE */
+	background: transparent\9; /* para funcionar a transparencia no IE */
+	background:rgba(255,255,255,0.7);
+ 	font-size:12px;	
+ 	width: -webkit-calc(100% - 110px);  /* para Chrome */
+	width: -moz-calc(100% - 110px);     /* para Firefox */
+	width: calc(100% - 110px);          /* para suporte nativo */
+	text-align:left;
+	margin: -30px auto 0; /* valor negativo da altura do rodapÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© */
+	padding: 0 27px;
+	color:#000;	
+	background: #fff\9;
+	width:90%\9;
+	
+}
+
+#rodape a{
+ 	color:#000;	
+ }
+
+
+#procempa {
+    float:right;
+	clear:both;
+	margin-top:10px;
+}
+
+
+
+ .botao {
+/*	BORDER-TOP: 1px solid #858585;
+	BORDER-RIGHT: 1px solid #BEBEBE;
+	BORDER-BOTTOM: 1px solid #DCDCDC;
+	BORDER-LEFT: 1px solid #BEBEBE;
+	BACKGROUND: #fff url(input_image.png) repeat-x;
+	FONT: normal 10px verdana, arial, sans-serif;
+	COLOR: #0066cc;
+	MARGIN: 1px;  */
+	padding: 30px 0px 10px 10px;
+	float: right;
+    margin-top: 40px;	
+}
+
+
+#menu {
+    float: right;
+    margin-right: 5px;
+	 margin-top:10px\9;
+}
+
+#menu li{
+	display:inline;
+	padding-right: 6px;
+	
+	
+	}
+	
+#menu ul a:hover{
+	background-color:#454138;
+	}
+	
+#menu ul a{
+	text-decoration:none;
+	color:#E6E6E6;
+/*	background-color:#362A15;	*/
+	background-color:#3D3323;
+	padding: 0 10px;
+}
+
+#container {
+width: -webkit-calc(100% - 110px);  /* para Chrome */
+width: -moz-calc(100% - 110px);     /* para Firefox */
+width: calc(100% - 110px);          /* para suporte nativo */
+text-align:left;
+color:#fff;
+border-left:0 solid #ccc;
+border-right:0 solid #ccc;
+clear:both;
+margin:auto;
+height: auto !important; /* ie6 ignores !important, so this will be overridden below */
+    min-height: 100%; /* ie6 ignores min-height completely */
+    height: 100%;
+	position: relative; /* Required to absolutely position the footer */
+z-index:1;
+	
+
+
+}
+
+#topo{
+margin-bottom: 70px;
+margin:0 auto 70px\9;
+width:95%\9;
+
+}
+
+
+
+#topo a:link,#topo a:visited,#topo a:active {
+text-decoration:none;
+border:0;
+}
+
+#title_bar {
+background: #3D3323;
+height: 14px;
+position: absolute;
+width: 148px;
+top:66px;
+top:58px\9;
+left:32px\9;
+
+}
+
+
+
+#endereco{
+	float:left;
+	text-align:center\9;
+	font-family: 'Open Sans', sans-serif;
+
+} 
+
+#endereco a:link {
+    text-decoration: none;
+}
+
+
+#ou {
+	float:left;
+    margin-top: 30px;	
+}
+
+#expedienteUnico {
+	float:right;
+	font-family: 'Open Sans', sans-serif;	
+}
+
+#botoesEnd {
+	clear:both;
+	
+}
+
+#ueu {
+	float: left;	
+}
+ 
+#ap {
+	float: left;	
+}         
+
+
+#atencao {
+    clear: both;
+    color: #E6E6E6;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 12px;
+    margin-top: 75px;
+    text-align: right;
+}
+ </style>
+<script type="text/JavaScript" src="#{facesContext.externalContext.requestContextPath}/javascript/jquery.meio.mask.js"  language="JavaScript" charset="utf-8"/>
+<script>
+	// Para acesso ao CDL
+	var janela = null;
+	var janelaDM = null;
+
+	function centraliza(width,height)
+	{
+		var properties = '';
+		var leftprop, topprop, screenX, screenY;
+		if(navigator.appName == "Microsoft Internet Explorer") {
+			screenY = window.screen.availHeight;
+			screenX = window.screen.availWidth;
+		} else {
+			screenY = window.outerHeight;
+			screenX = window.outerWidth;
+		}
+		leftvar = (screenX - width) / 2;
+		rightvar = (screenY - height) / 2;
+		// EstÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡ abrindo a janela no canto superior esquerdo
+		if(navigator.appName == "Microsoft Internet Explorer") {
+			leftprop = leftvar;
+			topprop = rightvar;
+		} else {
+			leftprop = (leftvar - pageXOffset);
+			topprop = (rightvar - pageYOffset);
+		}
+		return ", left = " + leftprop + ", top = " + topprop;
+	}
+
+	/*
+	 * Retorna a URL da aplicaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o
+	 */
+	function buscaURL() {
+		aux = document.location.href;
+		pos = aux.lastIndexOf("/");
+		return aux.substring(0, pos+1);
+	}
+	
+	//FunÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o de acesso ao componente. Precisa ter a pÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡gina de retorno (pg) especificada
+	function abreCDL() {			
+		janela=window.open('http://www.portoalegre.rs.gov.br/cdl/CDLWeb2/CDLPesquisaLogradouro.asp?pn='+""+'&amp;pg='+buscaURL()+'recebeCDL.html&amp;mapa=0','CDL','titlebar=0,location=no,toolbar=no,resizable=no,scrollbars=no,status=yes,width=670,height=400'+centraliza(670,400));
+	}
+		//FunÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o que recebe os dados do logradouro selecionado
+		
+	function recebeLogr(cod, nome, cep, bairro, nroini, nrofin) {
+	    	if (cod != 0)  {
+	    		document.getElementById('searchForm:criterioLogradouro').value = nome; 
+                        
+	    		document.getElementById('searchForm:criterioCodigoCdl').value = cod;
+	    		document.getElementById('searchForm:criterioEndereco').value = nome;
+	    		document.getElementById('searchForm:criterioNumero').value = nroini; 
+	    		document.getElementById('searchForm:criterioBairro').value = bairro; 	 
+			document.getElementById('searchForm:idPanelEndereco').style.visibility="visible";   		
+			}
+			else {
+				if (document.getElementById('searchForm:criterioCodigoCdl').value == 0) {
+					document.getElementById('searchForm:criterioCodigoCdl').value = "9999996";
+					document.getElementById('searchForm:criterioLogradouro').value = "";
+		    		document.getElementById('searchForm:criterioEndereco').value = ""; 
+		    		document.getElementById('searchForm:criterioNumero').value = ""; 
+		    		document.getElementById('searchForm:criterioBairro').value = ""; 	    				    		
+				} 	    			    		
+			}
+
+		}
+     function limpar() {
+ 
+				document.getElementById('searchForm:criterioCodigoCdl').value = "";
+				document.getElementById('searchForm:criterioLogradouro').value = "";
+		    	document.getElementById('searchForm:criterioEndereco').value = ""; 
+		    	document.getElementById('searchForm:criterioNumero').value = ""; 
+		    	document.getElementById('searchForm:criterioBairro').value = ""; 
+				document.getElementById('searchForm:idPanelEndereco').style.visibility="hidden";
+				document.getElementById('searchForm:criterioExpedienteUnico').value = "";
+				document.getElementById('searchForm:criterioExpedienteUnicoDV').value = "";
+				document.getElementById('searchForm:criterioAreaPrivativa').value = "";
+     }
+
+
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		 
+		  ga('create', 'UA-13113255-50', 'rs.gov.br');
+		  ga('send', 'pageview');
+	 
+     
+</script>	
+</head>
+    <body>		
+	<div id="container">	
+	 <div id="barrinha"></div>    
+     <div  dojotype="dijit.layout.ContentPane" region="top">
+       <div id="topo" >
+		  	<h:panelGrid style="width:100%;" columns="2" rendered="${ambiente == 'producao'}">
+				<a href="index.html"><div id="logo_edifica"><img id="dm" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/edifica_peq.png"/></div></a>
+				<div id="logo_pmpa"><a href="http://www.portoalegre.rs.gov.br" target="_blank"><img id="pmpa" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/prefeitura.png"/></a></div>
+<div id="menu">
+<ul>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?p_secao=8&amp;mbv=0" target="_blank">SOBRE</a></li>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?reg=1&amp;p_secao=11&amp;mbv=0" target="_blank">PERGUNTAS FREQUENTES</a></li>
+<li><a href="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/docs/MANUAL AJUDA- DMWEB.pdf" target="_blank">AJUDA</a></li>
+</ul></div>
+
+			</h:panelGrid>
+		  	<h:panelGrid style="width:100%;" columns="2"  rendered="${ambiente != 'producao'}">
+				<a href="searchBox.seam"><div id="logo_edifica"><img id="dm" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/edifica_peq.png"/></div></a>
+				<div id="logo_pmpa"><a href="http://www.portoalegre.rs.gov.br" target="_blank"><img id="pmpa" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/prefeitura.png"/></a></div>
+<div id="menu">
+<ul>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?p_secao=8&amp;mbv=0" target="_blank">SOBRE</a></li>
+<li><a href="http://www2.portoalegre.rs.gov.br/dm/default.php?reg=1&amp;p_secao=11&amp;mbv=0" target="_blank">PERGUNTAS FREQUENTES</a></li>
+<li><a href="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/docs/MANUAL AJUDA- DMWEB.pdf" target="_blank">AJUDA</a></li>
+</ul></div>
+			</h:panelGrid>
+ 	</div>				
+
+   	<div id="title_bar"></div><div id="titulo">MAPAS</div>
+ 					
+<!--  					
+	<a4j:form id="headerForm">
+			
+			 <rich:toolBar height="34" itemSeparator="line"  >
+		 			<rich:toolBarGroup location="right" itemSeparator="line"  rendered="${ambiente == 'producao'}">
+						<a href="index.html" target="_self">
+							<img src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/home.png" border="0" id="idHome" title="DeclaraÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o Municipal" style="margin: 1px 0px 0px 1px; right;" />
+						</a>
+						<img src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/barra.png"/>						
+						<a href="http://www2.portoalegre.rs.gov.br/dm/default.php?p_secao=8"><img id="info" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/info.png" title="informaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµes"/></a>	 			
+
+					</rich:toolBarGroup>
+		 			<rich:toolBarGroup location="right" itemSeparator="line"  rendered="${ambiente != 'producao'}">
+						<a href="searchBox.seam" target="_self">
+							<img src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/home.png" border="0" id="idHome" title="DeclaraÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o Municipal" style="margin: 1px 0px 0px 1px; right;" />
+						</a>
+						<img src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/barra.png"/>						
+						<a href="http://www2.portoalegre.rs.gov.br/dm/default.php?p_secao=8"><img id="info" src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/info.png" title="informaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµes"/></a>	 			
+
+					</rich:toolBarGroup>
+			 </rich:toolBar>
+	</a4j:form>			
+	
+ -->	
+    </div>
+	<a4j:form id="searchForm">
+	     <h:panelGrid style="width:870px;margin:150px auto 0;" columns="2">
+
+				<h:panelGroup layout="block" >
+
+				</h:panelGroup>
+				<h:panelGroup layout="block" style="align:center;">
+					 <rich:panel bodyClass="rich-laguna-panel-no-header">
+						<rich:messages level="error,warn" layout="table" ajaxRendered="true" styleClass="msgErro"/>
+<div id="endereco">
+						<h:panelGroup layout="block" style="width:300px;height:110px;" styleClass="fundoMarrom">
+							<h:panelGrid columns="1" style=" font-size: 26px; padding: 15px 47px; text-align: center; text-decoration: none;">
+
+								<h:outputLink onmousedown="abreCDL();" value="Busca CDL" onclick="return false">
+									<h:outputText value="Clique aqui"  styleClass="titulo" />
+									<img src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/seta.png"/>								
+
+								</h:outputLink>	
+									<h:outputText   styleClass="titulo" value=" para informar o endereço" />								
+							</h:panelGrid>
+						</h:panelGroup>
+							</div>
+						<div id="ou">	
+						<s:label value=" ou " styleClass="titulo" style="font-family: 'Open Sans', sans-serif; font-size:30px; margin-left:8px; text-align: center; text-decoration: none;"/>
+						</div>
+
+			 		
+						
+						<div id="expedienteUnico"  >
+						<h:panelGroup layout="block"  style="width:485px;height:110px;" styleClass="fundoMarrom">
+							<div id="ueu">
+							<h:panelGrid style=" font-size: 26px; padding: 24px 47px; text-align: center; text-decoration: none;">
+
+							     <s:label value="Insira o Expediente Único:" styleClass="titulo" />
+	                             <h:panelGroup layout="block" style="margin-top: 2px; margin-right: 2px; padding: 0px;">
+									<h:outputText value=" 002 " styleClass="titulo" />
+						 			<h:inputText id="criterioExpedienteUnico" value="#{documentoAction.criterioExpedienteUnico}" style="width:75px;text-align: left;"/>
+						 			<rich:jQuery selector="#criterioExpedienteUnico" query="setMask('99999999')" timing="onload" />
+									<h:outputText value=" 00 " styleClass="titulo" />
+						 			<h:inputText id="criterioExpedienteUnicoDV" value="#{documentoAction.criterioExpedienteUnicoDV}" style="width:25px;text-align: left;"/>
+						 			<rich:jQuery selector="#criterioExpedienteUnicoDV" query="setMask('9')" timing="onload" />
+	                             </h:panelGroup>
+
+							</h:panelGrid>
+	                        </div>
+							<div id="ap">
+							<h:panelGrid style="text-align:left;  padding: 24px 15px;">
+
+							     <s:label styleClass="titulo"  value="Área privativa:"/>
+	                             <h:panelGroup layout="block" style="margin-top: 2px; margin-right: 2px; padding: 0px;">
+						 			<h:inputText id="criterioAreaPrivativa" value="#{documentoAction.criterioAreaPrivativa}" style="width:75px;text-align: left; margin-top: 4px;"/>
+						 			<rich:jQuery selector="#criterioAreaPrivativa" query="setMask('999')" timing="onload" />
+	                             </h:panelGroup>
+
+
+							</h:panelGrid>							
+	                        </div>
+						</h:panelGroup>	
+</div>
+						<rich:spacer height="30px"/>
+						
+						<div id="botoesEnd">
+						
+						
+				 		<h:commandButton id="voltarBtn"  action="#{documentoAction.voltaPraHome}" styleClass="botao" style="float:left; padding:30px 10px 10px 0"
+				 		type="image" image="/img/voltar_forte.png"
+									 onmouseover="this.src='img/voltar.png'"
+									 onmouseout="this.src='img/voltar_forte.png'"
+									 onmousedown="this.src='img/voltar_fraco.png'"/>
+				 		<rich:spacer height="20"/>			 
+						
+						
+						<h:panelGroup layout="block" style="visibility:hidden; margin-top: 50px; margin-left: 125px; position:absolute; padding: 0px;" id="idPanelEndereco">
+	 
+							<a4j:region renderRegionOnly="true" >
+							
+							
+							
+							<h:panelGrid columns="2" style="text-align:left;">
+
+					 			<h:inputText id="criterioEndereco" value="#{documentoAction.criterioEndereco}" readonly="true" style="width:400px;text-align: left;"/>
+					 			<h:inputText id="criterioNumero" value="#{documentoAction.criterioNumero}"  style="width:50px;text-align: left;"/>
+					 			<rich:jQuery selector="#criterioNumero" query="setMask('99999')" timing="onload" />
+							</h:panelGrid>
+					 		</a4j:region>
+				 			<h:panelGrid id="idPnlHidden">
+								<h:inputHidden value="#{documentoAction.criterioCodigoCdl}" id="criterioCodigoCdl" />
+								<h:inputHidden value="#{documentoAction.criterioBairro}" id="criterioBairro" />	
+								<h:inputHidden value="#{documentoAction.criterioLogradouro}" id="criterioLogradouro"/>
+							</h:panelGrid>
+			 
+						</h:panelGroup>
+						
+				 		<h:commandButton id="searchBtn" action="#{documentoAction.pesquisaExpedienteUnico}" styleClass="botao"
+				 		type="image" image="/img/prosseguir_forte.png"
+									 onmouseover="this.src='img/prosseguir.png'"
+									 onmouseout="this.src='img/prosseguir_forte.png'"
+									 onmousedown="this.src='img/prosseguir_fraco.png'"/>
+				 		<rich:spacer height="20"/>			 
+						<a4j:commandButton id="limparBtn" onclick="#{rich:element('searchForm')}.reset();limpar(); return false;"  styleClass="botao"
+				 		type="image" image="/img/limpar_forte.png"
+									 onmouseover="this.src='img/limpar.png'"
+									 onmouseout="this.src='img/limpar_forte.png'"
+									 onmousedown="this.src='img/limpar_fraco.png'" />
+						</div>
+				 		<rich:spacer height="20"/>	
+				 		<div id="atencao" >
+				 		<p> ATENÇÃO: Desabilite a função Bloquear Pop-ups do seu browser </p>
+				 		</div>
+				 		 <!-- Pressiona automaticamente os botÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âµes quando usuÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡rio pressiona enter -->
+						<rich:hotKey key="return" selector="#searchForm" 
+							    handler="${rich:element('searchForm:searchBtn')}.click();event.stopPropagation();event.preventDefault(); return false;"
+			     				disableInInput="false"/>
+			     	</rich:panel>
+			 	</h:panelGroup>	
+			  </h:panelGrid>
+			</a4j:form>
+    
+</div>
+<!--  abre rodape  -->
+<div id="rodape">
+
+<div id="procempa">
+<img src="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/procempa_cinza.png"/></div>
+
+<div>
+<p style="margin:0; width:800px;padding-top:8px;">EDIFICAPOA | Rua Siqueira Campos, 805   CEP 90010-000  Centro  PORTO ALEGRE | <a target="_top" href="mailto:edificapoa@gp.prefpoa.com.br" style="text-decoration:none; " >
+edificapoa@gp.prefpoa.com.br</a></p></div>
+
+
+</div>
+<!-- fecha rodape-->
+</body>
+</html>

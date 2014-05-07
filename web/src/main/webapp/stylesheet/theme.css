@@ -1,0 +1,1029 @@
+/*	
+	
+	PROCEMPA -  Empresa de Tecnologia da Informacao e Comunicacao de Porto Alegre
+	data de criacao:10/2010
+	data de versao:	11/2010
+	versao 1.0
+	Portal de Gest�o
+	
+*/
+
+
+
+/* ESTRUTURAS GERAIS (SELETORES HTML) ___________________________________ */
+html, body {
+	height:100%;
+	padding:0;
+	margin:0;
+	background-color:#E7E7E7;
+	font-family:verdana,arial,helvetica,sans-serif;
+	font-size: 11px;
+	color: #000000;
+	font-size: 0.9em;							/* tamanho do texto (tem de ser em .em para acessibilidade */
+	}
+
+a:link, a:visited, a:active 
+	{text-decoration:none;}			/* link normal, visitado, ativo decora��o dos links (sem decora��o, sem underline) */
+a:visited 
+	{color:navy;}							/* cor do link visitado */
+a:hover 
+	{text-decoration:underline;}		/* decora��o do link passa ter underline (quando mouse est� em cima do link)  */
+	
+
+#principal {
+width:980px;
+text-align:left;
+background: #fff;
+color:#000;
+position:relative;
+border-left:0 solid #ccc;
+border-right:0 solid #ccc;
+clear:both;
+margin:auto;
+}
+
+
+input, textarea, select {
+	border: 1px solid #BBBBBB;
+	font-size: 12px;
+	background: #F0F8FF;
+	color: black;
+}
+
+input[type='submit'], input[type='button'] {
+	background: #4477AA;
+	color: white;
+	margin: 5px;
+	border-color: gray;
+}
+
+button[type='button'][disabled], button[type='reset'][disabled], button[type='submit'][disabled], 
+input[type='reset'][disabled], input[type='submit'][disabled], input[type='button'][disabled] { 
+    background-color:#F0F8FF;
+    background-position:0 50%;
+    color:#7890AB;
+    border-color:#C0C0C0;
+}
+
+.tabela-sem-borda-cell {
+	border-top:0px;
+	border-bottom:0px;
+	border-left:0px;
+	border-right:0px;
+    background-color:transparent;
+}
+
+.tableControl, .actionButtons {
+	width: 100%;
+}
+
+.tableControl a {
+	padding-left: 10px;
+}
+
+.tableControl {
+	text-align: right;
+}
+
+.footer {
+	text-align: center;
+	width: 800px;
+	font-size: 10px
+}
+
+.rich-table {
+    width:100%;
+}
+
+h1 {
+	font-family: Arial,sans-serif;
+	color: #578BB8;
+	font-size: 1.6em;
+	margin-top: 0;
+}
+
+.body {
+	padding: 30px;
+}
+
+.columnHeader:hover
+{
+    color: #FF6600;
+}
+
+.message {
+	border: 1px solid #FFCC00;
+	padding: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #F0F8FF;
+	font-size: 12px;
+}
+
+.name {
+	vertical-align: top;
+	font-weight: bold;
+	width: 115px;
+	float: left;
+	padding: 5px;
+	margin-top: 3px;
+	clear: left;
+}
+
+.extendedName {
+	vertical-align: top;
+	font-weight: bold;
+	width: 350px;
+	float: left;
+	padding: 5px;
+	margin-top: 3px;
+	clear: left;
+}
+
+.value {
+	float: left;
+	padding: 5px;
+}
+
+.error {
+	float: left;
+	padding: 5px;
+}
+.errors {
+	color: red;
+	vertical-align: middle;
+}
+img.errors {
+	padding-right: 5px;
+}
+.errors input {
+	border: 1px solid red;
+}
+.errors textarea {
+	border: 1px solid red;
+}
+
+.required {
+	color: red;
+	padding-left: 2px;
+}
+
+.rich-stglpanel-body {
+   overflow: auto;
+} 
+
+/*
+ *
+ * Styles serao usados em formatacoes das datatables.
+ * */
+.richLeft {
+	text-align: left;
+}
+
+.richRight {
+	text-align: right;
+}
+
+.richCenter {
+    text-align: center;
+}
+
+.richRowODD {
+    background: #FFFFFF;/*White*/
+}
+.richRowEVEN {
+	background: #F0F8FF;/*Quartz*/
+}
+
+.richInputBackground {
+	background: #F0F8FF;
+}
+
+.richSelectedMenu{
+	font-family: Verdana,Arial,sans-serif;
+	color: #3366FF; /*LightBlue*/
+}
+
+.richOutputFont{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/************************************************************************************/
+/*	DOCUMENTO __________________________________________ */
+
+html, body {
+	height:100%;
+	text-align: center; 
+	padding:0;
+	margin:0;
+	background-color:#E7E7E7;
+	font-family:verdana,arial,helvetica,sans-serif;
+	font-size: 11px;
+	color: #000000;
+	}
+
+/************************************************************************************/
+/* ESTRUTURA INTERNA GERAL(DIVS) _____________________________________________ */
+
+
+#container {
+	margin: auto; 
+	width: 1000px;
+	text-align: left;
+	height:100%;
+	min-height:100%;
+	background: white url(images/corpo_textura.gif) repeat-y left top;
+	margin-bottom:-90px;
+	color: #000000;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	}
+	
+	html>body #container { height:auto; } /* ajuste firefox */
+
+#cabecalho {
+	top: 0;
+	left: 0;
+	position: relative;
+	height: 75px;
+	background:#fff;
+	background-image: url(images/cab_fundo.jpg);
+	background-repeat: no-repeat;
+	padding:10px;
+	border: 0px solid #ccc;
+	}
+
+
+#col_esquerda {
+	position:relative;
+	float:left;
+	width:200px;
+	margin: 0; 
+	padding:6px 0 0 0;
+	z-index:3002;
+	background:#fff;
+	border:1px solid #E5FF00;
+	}
+
+#conteudo {
+	position:relative;
+	float:left;
+	width:100%;
+	margin: 0;
+	border:0px solid #00FF22;
+	}
+
+#col_direita {
+	position:relative;	
+	width:190px;
+	float:right;	
+	top: 0;	
+	margin: 0;
+	font-size: 1em;
+	border:1px solid blue;
+	z-index:3001;
+	}
+	
+#rodape { 
+	position:relative;
+	margin:auto;
+	width:1000px;
+	clear:both;
+	height:90px;
+	background-color: #DDD;
+	}
+
+	html>body #rodape { width:1000px; height:89px; }	 /*  ajuste firefox  */
+	
+#limpa_rodape { clear:both; height:90px; }	/*  faz o espaco para o rodape  */
+
+
+/* CABE�ALHO - ESTRUTURA INTERNA _______________________________ */
+
+#logo_pmpa_cor {
+	position:relative;
+	float:left;
+	width:70px;
+	height:70x;	
+	}
+	
+#logo_eixo {
+	position:relative;
+	float:left;
+	margin-left:10px;
+	width:70px;
+	height:70x;	
+	}	
+	
+#logo_programa {
+	position:relative;
+	float:left;
+	margin-left:10px;
+	width:70px;
+	height:70x;	
+	}	
+		
+#rotulo {
+	position:relative;
+	float:left;
+	margin-left:10px;
+	}			
+
+/* Menu horizontal e vertical __________________________________________ */
+
+#menu { clear:top; float:right; }
+
+/* Menu horizontal e vertical __________________________________________ */
+
+ul.cssMenu { 
+	margin: 0; 
+	padding: 0; 
+	list-style: none; 
+	position: relative;  
+	text-align:left;					/* alinhamento do texto */
+	}
+
+ul.cssMenu ul {
+	width:10.5em; 					/* largura do      SUB     menu */
+	margin: 0;
+	list-style: none;
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: -39px;
+	*left:0;
+	}
+
+ul.cssMenu ul ul,ul.cssMenu ul ul ul { top: 0; left: 100%; }
+
+ul.cssMenu li { float: left; display: inline; position: relative; }
+ul.cssMenu ul li { width: 100%; display: block; }
+
+/* Root Menu */
+ul.cssMenu a {
+	padding: 5px 6px 4px 6px;
+	float: left;
+	display: block;
+	width:10.5em;						/* largura do MENU */
+	color: #0c4232;
+	font: bold 13px Georgia, Arial, sans-serif;
+	text-decoration: none;
+	height: 1%;
+	}
+
+/* Root Menu Hover Persistence */
+ul.cssMenu a:hover,ul.cssMenu li:hover a,ul.cssMenu li.iehover a {
+	/*background: url(../images/fundos/fundo_over_menu.png) repeat; */
+	background:#ccc;
+	color: #0c4232;
+	}
+
+/* 2nd Menu */
+ul.cssMenu li:hover li a,ul.cssMenu li.iehover li a {
+	float: none;
+	background:#ccc;
+	}
+
+/* 2nd Menu Hover Persistence */
+ul.cssMenu li:hover li a:hover,ul.cssMenu li:hover li:hover a,ul.cssMenu li.iehover li a:hover,ul.cssMenu li.iehover li.iehover a {
+background:#ccc url(../images/fundos/fundo_over_menu.png) repeat;
+}
+
+/* 3rd Menu */
+ul.cssMenu li:hover li:hover li a,ul.cssMenu li.iehover li.iehover li a {
+ background: #999;
+}
+
+/* 3rd Menu Hover Persistence */
+ul.cssMenu li:hover li:hover li a:hover,ul.cssMenu li:hover li:hover li:hover a,ul.cssMenu li.iehover li.iehover li a:hover,ul.cssMenu li.iehover li.iehover li.iehover a {
+ background: #666;
+}
+
+/* 4th Menu */
+ul.cssMenu li:hover li:hover li:hover li a,ul.cssMenu li.iehover li.iehover li.iehover li a {
+ background: #666;
+}
+
+/* 4th Menu Hover */
+ul.cssMenu li:hover li:hover li:hover li a:hover,ul.cssMenu li.iehover li.iehover li.iehover li a:hover {
+ background: #333;
+}
+
+/* Hover Function - Do Not Move */
+ul.cssMenu li:hover ul ul,ul.cssMenu li:hover ul ul ul,ul.cssMenu li.iehover ul ul,ul.cssMenu li.iehover ul ul ul { display: none; }
+ul.cssMenu li:hover ul,ul.cssMenu ul li:hover ul,ul.cssMenu ul ul li:hover ul,ul.cssMenu li.iehover ul,ul.cssMenu ul li.iehover ul,ul.cssMenu ul ul li.iehover ul { 
+	display: block; 
+	left:8em; 						/* DESLOCAMENTO LATERAL do SUB menu */
+	top:1em; 						/* DESLOCAMENTO VERTICAL do SUB menu */
+	} 
+
+
+
+/* COL ESQUERDA - ESTRUTURA INTERNA ____________________________ */
+
+
+/* COL DIREITA - ESTRUTURA INTERNA ______________________________ */
+
+#procura {
+	position:relative;
+	margin: 0;
+	padding: 2px 0 0 0;
+	}
+
+#campo { 
+	height:34px; 
+	width: 160px; 
+	border: 1px solid #4C6781; 
+	}
+
+#busca { 
+	margin: 1px 0 0 1px; 
+	}
+	
+	
+
+/* acessibilidade ______________________________________________ */ 
+    
+/* acessibilidade - menu invis�vel para cegos */
+span.accesskey {                /*  escondendo o menu para cegos  */
+    text-decoration:none;
+    }
+.accessibility {                        /*  escondendo o menu para cegos  */
+    position: absolute;
+    top: -999em;
+    left: -999em;
+    }   
+    
+/* acessibilidade - caixa geral */  
+#acessibilidade {
+    position:relative;
+    width:190px;
+    /*float:right;               quando flutuar ao lado direito do caminho */
+    text-align:center;
+    background-color:#ddd;                                  
+    margin: 15px 0 0 0;
+    padding: 2px 0 8px 0;
+    z-index:24;
+    border:1px solid #333;
+    clear:both;
+    }
+    
+    html>body #acessibilidade {  }                  /* ajuste firefox - chrome */   
+
+/* acessibilidade - link a1 */
+.a1:active, .a1:link, .a1:visited, .a1:hover { 
+    position:absolute;
+    visibility:hidden;
+    width:0;
+    height:0;
+    }
+
+/* acessibilidade - link a2 */
+.a2:active, .a2:link, .a2:visited, .a2:hover { 
+    text-decoration: none; 
+    color: #000; 
+    font-size:2em; 
+    font-weight:bold; 
+    }
+
+/* acessibilidade - link a3 */
+.a3:active, .a3:link, .a3:visited, .a3:hover { 
+    position:absolute;
+    visibility:hidden;
+    width:0;
+    height:0;
+    }
+    
+/* acessibilidade - link a4  */
+.a4:active, .a4:link, .a4:visited, .a4:hover { 
+    position:absolute;
+    visibility:hidden;
+    width:0;
+    height:0;
+    }   
+
+/* acessibilidade - link preto */
+.preto:active, .preto:link, .preto:visited { 
+    text-decoration: none; 
+    color: #fff; 
+    font-weight:bold; 
+    }
+.preto:hover { text-decoration : underline; font-weight:bold; }
+
+/* acessibilidade - caixa preto */
+.preto_acessivel  {
+    position:absolute;
+    visibility:hidden;
+    width:0;
+    height:0;
+    }
+    
+/* acessibilidade - caixa preto */
+.preto_acessivel_m {
+    position:absolute;
+    visibility:hidden;
+    width:0;
+    height:0;
+    }   
+
+/* acessibilidade - caixa preto */
+.preto_m {
+    position:absolute;
+    visibility:hidden;
+    width:0;
+    height:0;   
+    }   
+
+/* acessibilidade - caixa preto */
+.preto {
+    position:relative;
+    text-align:center;
+    width:22px; 
+    height:22px;
+    margin: 0;
+    padding: 0 0 2px 0;
+    background-color: #000;
+    color:#fff;
+    font-size:2em;
+    }       
+    
+    html>body .preto {  padding: 0 6px 0 6px; word-spacing: 0; }
+
+/* acessibilidade - link ajuda  */
+.ajuda:active, .ajuda:link, .ajuda:visited, .ajuda:hover { 
+    text-decoration: none; 
+    color: #000; 
+    font-size:2.5em; 
+    font-weight:bold;
+    display:none; 
+    }
+.ajuda:hover { text-decoration : underline; }
+
+
+
+/*  redes sociais __________________________________________________ */
+
+#caixa_redes_sociais {
+position:relative;
+clear:both;
+display:block;
+left:0;
+}
+
+#slider_redes_sociais {
+position:relative;
+display:block;
+clear:both;
+width:220px;
+height:228px;
+background-color:#fff;
+padding:0;
+text-align:center;
+}
+
+#slider_redes_sociais ul,#slider_redes_sociais li {
+list-style:none;
+margin:0;
+padding:0;
+}
+
+#slider_redes_sociais li {
+width:220px;
+height:228px;
+overflow:hidden;
+}
+
+#caixa_redes_sociais h1 {
+font-size:1.5em;
+font-weight:700;
+font-family:arial, helvetica, sans-serif;
+text-align:center;
+}
+
+
+.graphic {
+display:block;
+}
+
+#prevBtn a,#sliderprev a {
+position:absolute;
+display:block;
+left:0;
+top:110px;
+width:18px;
+height:18px;
+background:url("../../proweb3_generico/images/botoes/btn_prev.gif") no-repeat 0 0;
+z-index:5;
+}
+
+#nextBtn a,#slidernext a {
+position:absolute;
+display:block;
+top:110px;
+left:205px;
+width:18px;
+height:18px;
+background:url("../../proweb3_generico/images/botoes/btn_next.gif") no-repeat 0 0;
+z-index:5;
+}
+
+/*APLICA��O METROCLIMA ______________________________________________________________ */
+
+#app_metroclima
+{
+background-color:#eeeeee;
+border:1px solid #bababa;
+height:30px;
+margin:15px 0 13px 0;
+}
+
+#app_metroclima img
+{
+border:0;
+}
+
+#app_metroclima a:link,#app_metroclima a:visited,#app_metroclima a:active
+{
+height:30px;
+text-decoration:none;
+color: #000;
+z-index:0;
+cursor:pointer;
+}
+
+#app_metroclima a:hover
+{
+background:url(../../proweb3_generico/images/fundos/bg_itens_uteis.png) repeat-x;
+text-decoration:none;
+float:left;
+width:188px;
+}
+
+#app_metroclima .ico_metroclima
+{
+position:absolute;
+left:-1px;
+width:45px;
+height:35px;
+z-index:0;
+}
+
+#app_metroclima ul
+{
+position:relative;
+margin:2px 20px 0 0;
+padding:0;
+list-style:none;
+float:right;
+*left:-25px;
+}
+
+#app_metroclima li
+{
+display:inline;
+vertical-align:middle;
+text-align:center;
+margin:0;
+padding:0;
+line-height:0;
+}
+
+#app_metroclima .max_min
+{
+float:left;
+line-height:12px;
+font-weight:bold;
+font-size:0.85em;
+margin-left:35px;
+top:1px;
+}
+
+#app_metroclima .data_metroclima
+{
+position:relative;
+float:right;
+line-height:10px;
+font-size:0.8em;
+z-index:999999;
+}
+
+#app_metroclima .max_min .temp_max
+{
+color:#ff0000;
+}
+#app_metroclima .temp_min
+{
+color:#0066cc;
+}
+
+/*BANNERS RAND�MICOS _________________________________________ */
+
+#banner1
+{
+position:relative;
+width:190px;
+height:70px;
+margin:0 0 10px 0;
+z-index:-1;
+}
+
+#banner2
+{
+position:relative;
+width:190px;
+height:70px;
+margin: 0;
+z-index:-1;
+}
+
+.banner3
+{
+position:relative;
+width:190px;
+height:70px;
+margin:0 0 20px 0;
+z-index:-1;
+}
+
+/*NEWSLETTER*/
+
+#formnews
+{
+border:1px solid #bababa;
+background-color:#E1E6E0;
+display:none;
+margin:8px 0 0 0;	
+z-index:10;
+}
+
+#formnews label
+{float:left; margin: 10px 0 0 12px;}
+
+#formnews form {margin:0;}
+
+#campo_news {
+	margin: 3px 0 0 3px;
+	width: 190px;
+	height: 21px;
+	padding: 0 0 0 5px;
+	border-style: none;
+	font-size: 1.2em;
+	font-weight:bold;
+	outline:none;
+	border:1px solid #bababa;
+	background-color:#fff;
+	}
+
+#campo_news_email {
+	margin: 3px 0 0 3px;
+	width: 190px;
+	height: 21px;
+	padding: 0 0 0 5px;
+	border-style: none;
+	font-size: 1.2em;
+	font-weight:bold;
+	outline:none;
+	border:1px solid #bababa;
+	background-color:#fff;
+	}
+#news_assinar
+       {
+       position:relative;
+       margin: 10px 0 10px 0;
+       width: 124px;
+       height: 39px;
+       clear:both;
+       color:#000;
+       font-weight:bold;
+       border: 1px solid #A6B5A2;
+       background: -moz-linear-gradient(top, #BDFE6E, #ABE26B);
+	   background: -webkit-gradient(linear, left top, left bottom, from(#BDFE6E), to(#ABE26B));
+	   filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#BDFE6E', EndColorStr='#ABE26B');
+ 	   text-shadow: 0 1px 0 #DDD;
+       }
+
+/* Assinatura PROCEMPA __________________________________________ */
+
+
+#gallery {
+position:relative;
+float:right;
+top:0;
+height:70px;
+width:220px;
+overflow:hidden;
+margin:10px 0;
+}
+
+#gallery a {
+float:right;
+position:absolute;
+}
+
+#gallery a img {
+border:none;
+top:0;
+left:0;
+}
+
+#gallery a.show {
+top:0;
+left:0;
+z-index:5;
+}
+
+/* estilos PAINEL DESTAQUE    _______________________________________________________________ */
+
+#destaques {
+	position:relative;
+	float:right;
+	border: 0 solid blue;
+	z-index:1;
+	}
+	
+#destaques ul {
+	width:auto;
+	margin:20px;
+	border:0 solid red;
+	}
+
+#destaques li {  
+
+            display:inline;
+            font-family:Arial, Verdana, Helvetica, sans-serif;
+            font-size: 0.9em;
+            font-weight:bold;
+            text-align:center;
+            } 
+
+#destaques li a {
+
+            display:inline;
+            padding:5px 10px 5px 10px;
+            text-decoration:none;
+            background:#000;
+            color:#FFF;
+} 
+
+#destaques li a:hover {
+	
+
+  background:#FFF;
+  color: #808080;
+}
+
+#destaques li a.selected {
+
+  background: #808080;
+  color:#FFF;
+}
+
+.a1_tag_turista {
+            position: relative;
+            background-color:#7f0f57;
+            padding:9px;
+            margin:0;
+            color: #fff;
+            top:30px;
+            }
+
+.a1_tag_turista a:link, .a1_tag_turista a:visited, .a1_tag_turista a:active, .a1_tag_turista a:hover {
+            color: #fff;
+            }
+            
+         
+
+/* estilo dos links dos titulos e das tags do painel de imagens do cabe�alho */
+
+.titulo_cabecalho {
+			position: absolute;
+            width:auto;
+			right: 0; 
+			bottom: 0; 
+			left: 0;
+			margin-bottom: 10px;
+		    font-weight:bold;			
+  			}
+
+.titulo_cabecalho h1 a:link, .titulo_cabecalho h1 a:visited, .titulo_cabecalho h1 a:active 
+			{
+            text-decoration: none;
+            color: #fff;
+            z-index:99999;
+            padding: 10px 15px 10px 15px;
+            margin: 16px 0 0;
+            text-align:left;
+            float:left;
+			background-image: url(../../proweb3_sites/images/fundos/bg_painel_perfil_home2.png);
+			background-repeat: repeat-x;
+            /*line-height: 47px;*/
+            width:auto;
+            
+            }
+            
+.titulo_cabecalho h1 a:hover 
+			{
+            text-decoration: underline;
+            color: #fff;
+			background-image: url(../../proweb3_sites/images/fundos/bg_painel_perfil_home2.png);
+			background-repeat: repeat-x;
+			z-index:99999;
+	        padding: 10px 15px 10px 15px;
+	        margin: 16px 0 0;
+	        text-align:left;
+	        /*line-height: 47px;*/
+	        width:auto;
+	        
+	        }                                                                                            
+
+.titulo_cabecalho span a:link, .titulo_cabecalho span a:visited, .titulo_cabecalho span a:active {
+            text-decoration: none;
+            text-transform:none;
+            color: #fff;
+			position:relative;
+            font-family:Arial, Verdana, Helvetica, sans-serif;
+            font-size:1em;
+            font-weight:bold;
+            padding: 10px 15px 10px 15px;
+			background-image: url(../../proweb3_sites/images/fundos/bg_painel_perfil_home.png);      
+            }
+
+.titulo_cabecalho span a:hover 
+			{
+            text-decoration: underline;
+            text-transform:none;
+            color: #fff;
+ 			position:relative;
+            font-family:Arial, Verdana, Helvetica, sans-serif;
+            font-size:1em;
+            font-weight:bold;
+            background-image: url(../../proweb3_sites/images/fundos/bg_painel_perfil_home.png);
+            }	
+
+
+#message {
+  margin:10px auto;
+  border:6px solid #222;
+  width:240px;
+  height:40px;
+  background:#0D0D0D;
+  font-size:1.3em;
+  line-height:2em;
+  color:#FC4;
+}
+
+#tab_destaques {
+	position:relative;
+	/*z-index:50;*/
+	margin:0 0 8px 0;
+	/*margin-bottom:15px;*/
+	width: 550px;
+	height:210px;
+	/*background-color:#727272;*/
+	border:0 solid red;
+	z-index:3;
+	}
+ 
+.marginal { 
+	position:absolute;
+	width: 550px;
+	height:210px;
+	}
+	
+	#coluna_3 {width:240px; height:240px;}
+	
+
+
+/* Contatos __________________________________________ */	
+#tab_contato {
+clear: left;
+text-align: center;
+width: 220px;
+
+background-color: #E1E6E0;
+color: #333;
+float: left;
+margin: 20px 0 0;
+min-width: 235px;
+position: relative;
+}
+
+#contato_sec {
+background-color: #E1E6E0;
+clear: both;
+display: block;
+float: left;
+height: auto;
+padding: 10px 15px;
+position: relative;
+width: 500px;
+}
+
+/* Label agrupador  __________________________________________ */
+.tituloAgrupador {
+            font-family:Arial, Verdana, Helvetica, sans-serif;
+            font-size:1em;
+            font-weight:bold;
+	}
+

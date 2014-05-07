@@ -1,0 +1,447 @@
+ 
+            html, body {
+                height: 100%;
+                width: 100%;
+				font-size:0.9em;
+				color:#fff;                
+                margin: 0;
+                padding: 0px;
+				font-family: 'Open Sans', sans-serif;
+				font-weight:300;
+				background-image:url('http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/fundo_1.png');
+				background-repeat:repeat-x;
+				background-attachment: fixed;
+				background-size: 1820px 1280px;
+				background-position: left bottom;
+				background-color:#393d1f;
+
+/*                font-size: 90%;  */
+                
+            }
+		img {
+			border: none;
+		}
+
+
+
+
+
+#header {
+
+
+/*	 fundo velho	background: #def1f7;  Old browsers */
+/*	background: -moz-linear-gradient(left, #def1f7 0%, #eff9fd 100%);  FF3.6+ */
+/*	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#def1f7), color-stop(100%,#eff9fd));  Chrome,Safari4+ */
+/*	background: -webkit-linear-gradient(left, #def1f7 0%,#eff9fd 100%); /* Chrome10+,Safari5.1+ */
+/*	background: -o-linear-gradient(left, #def1f7 0%,#eff9fd 100%); /* Opera 11.10+ */
+/*	background: -ms-linear-gradient(left, #def1f7 0%,#eff9fd 100%); /* IE10+ */
+/*	background: linear-gradient(to right, #def1f7 0%,#eff9fd 100%); /* W3C */
+/*	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#def1f7', endColorstr='#eff9fd',GradientType=1 ); /* IE6-9 */
+
+
+
+ }
+
+
+
+
+	#leftPane {
+                width: 280px;
+                overflow: visible;
+            }
+            /* this line hide layers when out of scale for the inline TOC */
+            #scaleDiv .agsTOCOutOfScale {
+                display: none;
+            }
+            
+             
+	.rich-toolbar {
+		background-color : #414042;
+        background-image: none;
+		border: none;     
+		height: 36px;
+     }
+.rich-toolbar-item {
+    color: #FFFFFF;
+/* background-color: #616161; */
+	background-color: none;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;
+
+/*    font-size: 14px;   */
+
+    white-space: nowrap;
+	padding: 2px 22px; 
+
+    
+}
+
+.logradouro {
+    font-size: 17px;
+}
+
+.bairro {
+    font-size: 17px;
+}
+
+.macrozona {
+    font-size: 11px;
+    line-height: 0.7;
+}
+ 
+.quarteirao {
+    font-size: 14px;
+}
+ 
+.rich-toolbar-item img {
+    padding: 0 4px 0 3px;
+}
+ 
+#info {
+    margin-right: -3px;
+}
+
+
+
+.dijitBorderContainer, .dijitContainer, .dijitLayoutContainer, .dijit.layout.BorderContainer {
+	height: -webkit-calc(100% - 132px); /* para Chrome */
+	height: -moz-calc(100% - 132px); /* para Firefox */
+	height: calc(100% - 132px); /* para suporte nativo */	
+}
+
+
+
+
+.claro .dijitAccordionTitle {
+font-family: 'Open Sans', sans-serif;
+font-weight:300;
+
+/* background-color: #616161; */
+background-color: #454138;
+background-image: none;
+background-position: 0 0;
+background-repeat: repeat-x;
+padding: 5px 7px 2px 7px;
+min-height: 17px;
+color: #FFFFFF; 
+border: 0 none !important;  
+}
+.claro .dijitAccordionInnerContainerSelected {
+border: none;
+}
+
+.claro .dijitAccordionTitleFocus {
+color: #FFFFFF;
+border: 0 none !important;  
+}
+.dijitAccordionTitleSelected {
+cursor: default;
+border: 0 none !important;  
+/* background-color: #616161; */
+background-color: #454138;
+
+}
+
+.dijitAccordionTitleHover {
+cursor: pointer;
+border: 0 none !important;  
+/* background-color: #616161; */
+background-color: #454138;
+
+}
+
+.dijitAccordionTitleSelectedHover {
+cursor: pointer;
+border: none;
+/* background-color: #616161; */
+background-color: #454138;
+
+
+}
+.claro .dijitAccordionInnerContainerSelectedActive  {
+border: none 0;
+/* background-color: #616161; */
+background-color: #454138;
+
+margin-bottom: 1px;
+}
+
+.claro .dijitAccordionInnerContainerFocused, .dijitAccordionInnerContainerSelectedFocused, .dijitFocused, .dijitSelectedFocused {
+background-color: #ffffff;
+/* border-color: #616161; */
+border-color: #454138;
+
+margin-bottom: 1px;
+}
+
+.claro .dijitSelectedHoverFocused, .dijitAccordionInnerContainerHoverFocused, .dijitAccordionInnerContainerSelectedHoverFocused {
+
+/* background-color: #616161; */
+background-color: #454138;
+
+}
+
+.claro .dijitAccordionInnerContainerHover {
+border: none 0;
+-webkit-transition-duration:0;
+transition-duration:0;
+padding:0
+}
+
+.claro .dijitAccordionInnerContainerSelectedHover, .dijitSelectedHover  {
+/* border: 1px solid #616161 !important; */
+border: 1px solid #454138 !important;
+-webkit-transition-duration:0;
+transition-duration:0;
+background-color: #ffffff;
+
+}
+.claro .dijitAccordionInnerContainer {
+border: solid 1px #ff00ff;
+border-color: #454138;
+/* background-color: #616161; */
+background-color: #454138;
+-webkit-transition-property:0;
+transition-property:0;
+-webkit-transition-duration:0;
+-webkit-transition-timing-function:0;
+
+
+}
+.claro .dijitSelected {
+/* border-color: #616161; */
+border-color: #454138;
+margin-bottom: 1px;
+}
+.claro .dijitAccordionInnerContainerSelected {
+background-color: #ffffff;
+/* border-color: #616161; */
+border-color: #454138;
+margin-bottom: 1px;
+}
+.claro .dijitAccordionContainer .dijitAccordionChildWrapper {
+background-color: #ffffff;
+border: none 0 !important; 
+margin: 0 1px 1px;
+}
+.claro .dijitSplitterV .dijitSplitterHover {
+/* background: #616161 none; */ 
+background: #454138 none;
+}
+.claro .dijitSplitterV .dijitSplitterThumb {
+/* background: #b5bcc7 none; */
+background: #454138 none;
+height: 19px;
+left: 2px;
+width: 1px;
+margin: 0;
+}
+
+.claro .dijitSplitContainer-child, .claro .dijitBorderContainer-child {
+border: none;
+background-color: #ffffff;
+}
+ 
+/*.esriPopup .actionsPane .zoomTo {
+    display: none;
+}
+*/
+.esriPopup .titleButton.maximize {
+     display: none;
+}
+
+.claro .dijitContentPane {
+	padding: 0px;
+   	height: 81px;
+
+}
+
+.rich-menu-list-border {
+    border: 0px solid;
+}
+
+.rich-menu-item, .rich-menu-item a, .rich-menu-item a:hover, .rich-menu-item a:visited, .rich-menu-group, .rich-menu-group a, .rich-menu-group a:hover, .rich-menu-group a:visited {
+    color: #ffffff;
+    text-align:left;
+	font-family: 'open sans',sans-serif;   
+	letter-spacing: 0.7px;  
+ }
+ 
+.rich-menu-item-hover, .rich-menu-group-hover {
+    background-color:#454138;
+    border-color: #454138;
+}
+
+.rich-menu-item-label, .rich-menu-item-label-selected {
+	text-align: right;
+	background-color:#454138;
+}
+.rich-menu-item-enabled {
+	text-align: right;
+	background-color:#454138;
+}
+.rich-label-text-decor {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;
+
+	white-space: nowrap;
+}
+.rich-tool-tip {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;
+
+	color: white;
+	border-color: #4a6263;	
+	background-color:#454138;	
+}
+
+#dm {
+    margin-top: 25px;
+	position:relative;    
+}
+ 
+ 
+#pmpa {
+    float: right;
+/*    margin-right: 21px; */
+    margin-top: 10px;
+}
+ 
+ 
+#barrinha{
+	background-color: #454138;
+	margin: auto;
+	height:10px;
+	width: 100%;
+	
+	}
+	
+#logo_edifica {
+    float: left;
+    width: 250px;
+	height: 50px;
+	margin-top: -15px;
+}
+
+#logo_pmpa {
+    float: right;
+    width: 100px;
+}
+
+
+
+#menu {
+    float: right;
+    margin-right: 5px;
+	 margin-top:10px\9;
+}
+
+#menu li{
+	display:inline;
+	padding-right: 6px;
+	
+	
+	}
+	
+#menu ul a:hover{
+	background-color:#454138;
+	}
+	
+#menu ul a{
+	text-decoration:none;
+	color:#E6E6E6;
+/*	background-color:#362A15;	*/
+	background-color:#3D3323;
+	padding: 0 10px;
+}
+
+#title_bar {
+	background: #3D3323;
+	height: 14px;
+	position: absolute;
+    width: 148px;
+    top: 65px;
+    top:58px\9;
+    left:32px\9;
+
+}
+
+
+
+#texto, .titulo {
+	font-size: 17px;
+	line-height: 1.4;
+	margin-top: 30px;
+	width: 870px;
+	margin: 0 auto;
+	color:#fff;
+	line-height: 1.4;
+	clear: both;
+	font-family: 'Open Sans', sans-serif;
+}
+
+	
+	
+
+
+#titulo {
+    font-size: 14px;
+    left: 210px;
+    position: absolute;
+    top: 62px;
+    left: 185px\9;
+	top:55px\9;    
+}
+
+
+ 
+ #topo{
+	margin: 0 auto 2px;
+	width: -webkit-calc(100% - 110px);  /* para Chrome */
+	width: -moz-calc(100% - 110px);     /* para Firefox */
+	width: calc(100% - 110px);          /* para suporte nativo */
+
+	margin:0 auto 70px\9;
+	width:95%\9;
+	margin-bottom: 0\9;
+	height: 96px\9;
+
+}
+
+
+#topo a:link,#topo a:visited,#topo a:active {
+text-decoration:none;
+border:0;
+}
+ 
+ 
+#leftPane {
+    color: #000;
+}
+
+.fundoBrancoTransp {
+	background:rgb(255, 255, 255); /* para funcionar a transparencia no IE */
+	background: transparent\9; /* para funcionar a transparencia no IE */
+	background:rgba(255, 255, 255,0.1);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff); /* para funcionar a transparencia no IE */
+	zoom: 1;
+	
+}
+
+.botao {
+    padding: 15px 0 15px 50px;
+}
+
+
+.infowindow .window .top .right .user .titlebar .title .left { 
+   background-color: #cacbc9  !important;
+}
+
+ 
+ .dijitTabContainerTop-tabs .dijitTab, .dijitTabContainerBottom-tabs .dijitTab .dijitTabChecked {
+    background-color: #cacbc9 !important;
+ }
+
+ .claro .infowindow .sprite {
+	background-image: url("http://lproweb.procempa.com.br/pmpa/prefpoa/dm/usu_img/claro.infowindow2.png") !important;
+}

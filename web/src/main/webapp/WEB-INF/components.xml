@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+	xmlns:core="http://jboss.com/products/seam/core" 
+	xmlns:drools="http://jboss.com/products/seam/drools"
+	xmlns:persistence="http://jboss.com/products/seam/persistence"
+	xmlns:security="http://jboss.com/products/seam/security" 
+	xmlns:web="http://jboss.com/products/seam/web"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:document="http://jboss.com/products/seam/document"	
+	xmlns:transaction="http://jboss.com/products/seam/transaction"
+	xsi:schemaLocation="http://jboss.com/products/seam/core http://jboss.com/products/seam/core-2.2.xsd 
+	             http://jboss.com/products/seam/transaction http://jboss.com/products/seam/transaction-2.2.xsd
+                 http://jboss.com/products/seam/persistence http://jboss.com/products/seam/persistence-2.2.xsd 
+                 http://jboss.com/products/seam/drools http://jboss.com/products/seam/drools-2.2.xsd
+                 http://jboss.com/products/seam/bpm http://jboss.com/products/seam/bpm-2.2.xsd
+                 http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.2.xsd
+                 http://jboss.com/products/seam/document http://jboss.com/products/seam/document-2.2.xsd
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.2.xsd"> 
+	
+	<core:init 
+		jndi-pattern="dmweb/#{ejbName}/local" debug="false"/>
+	
+	<core:manager 
+		concurrent-request-timeout="4000"
+		conversation-id-parameter="cid"
+		default-flush-mode="MANUAL"
+		conversation-timeout="1800000"
+		parent-conversation-id-parameter="pid" />
+	
+	<persistence:managed-persistence-context
+		auto-create="true" 
+		name="entityManager" 
+		persistence-unit-jndi-name="java:/dmwebEntityManagerFactory" />
+	
+	<transaction:ejb-transaction />
+	
+	
+	<component 
+		class="org.jboss.seam.faces.FacesMessages" 
+		name="facesMessages"
+		scope="STATELESS" />
+ 
+
+</components>

@@ -1,0 +1,200 @@
+<p:document xmlns:p="http://jboss.com/products/seam/pdf"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	orientation="portrait"
+>
+
+
+
+   <f:facet name="header">
+     <p:font size="12" style="bold" name="LATO">
+       <p:header borderWidth="0">
+         <p:table columns="1" headerRows="0" widthPercentage="100" spacingAfter="40">
+            <p:cell borderWidth="0"  verticalAlignment="bottom" horizontalAlignment="left" >
+            	<p:html>
+					<h:graphicImage value="http://lproweb.procempa.com.br/pmpa/prefpoa/dm/images/brasao_escuro.png"   style="horizontal-align:left;width:200px; height:77px"  />	
+				</p:html>
+           	</p:cell>
+
+    	    <p:cell borderWidth="0" verticalAlignment="bottom" horizontalAlignment="center">
+	           	<p:paragraph>
+    	       		<p:text value="DMI – Declaração Municipal Informativa de ocupação e uso do solo"/>
+        	   	</p:paragraph>
+            </p:cell>
+    	    <p:cell borderWidth="0" borderWidthBottom="1" verticalAlignment="bottom" horizontalAlignment="center">
+	           	<p:paragraph>
+    	       		<p:text value="LC 434/99 MODIFICADA PELA LC 646/10"/>
+        	   	</p:paragraph>
+            </p:cell>
+         </p:table>
+		 <p:html>
+		 	<br />
+		 </p:html>
+       </p:header>
+       <p:footer borderWidth="0">
+           <p:font size="8" style="bold" name="LATO"><p:text value="Página  "/><p:pageNumber/></p:font>
+       </p:footer>
+     </p:font>
+   </f:facet>
+
+
+
+
+	<p:html>
+	 <font size="2" face="Arial">
+	 
+				<h:panelGrid style="text-align:center;"> 
+					<h:outputText id="logradouro" value="ENDEREÇO: #{documentoAction.divisaoTerritorial.logradouro}, #{documentoAction.criterioNumero}" style="font-weight:bold;"/> 
+				</h:panelGrid>
+
+				<h:panelGrid columns="4">
+					<h:panelGroup style="text-align:center;">
+						<h:outputText value=" MZ #{documentoAction.macrozona} " style="font-weight:bold" />	            								
+						<h:outputText value=" UEU #{documentoAction.ueu} " style="font-weight:bold" />	            															
+						<h:outputText value=" QTR #{documentoAction.quarteirao} " style="font-weight:bold" />	            															
+						<h:outputText value=" BAIRRO #{documentoAction.criterioBairro}" style="font-weight:bold" /> 					
+					</h:panelGroup>					
+				</h:panelGrid>						
+				<br />
+
+							<ui:repeat var="varItemDM"	value="#{documentoAction.itemDMList}" >
+								<h:outputText value="#{varItemDM.logradouro}" /><br/>	
+								<h:outputText value="#{varItemDM.situacaoLogradouro}" /><br/>	
+								<ui:repeat var="varPredioRelacionado"	value="#{varItemDM.predioRelacionadoList}" >
+	                				<h:outputText value="#{varPredioRelacionado.descricao}" /><br/>
+       						    </ui:repeat>
+								<ui:repeat var="varObservacaoFace"	value="#{varItemDM.observacaoFaceList}" >
+	                				<h:outputText value="#{varObservacaoFace.descricao}" /><br/>
+       						    </ui:repeat>
+								
+								
+								<h:panelGrid style="text-align:left;">
+
+	       						  <ui:repeat var="varRU"  value="#{varItemDM.regimeUrbanisticoList}">	
+
+								  <h:outputText value="#{varItemDM.textoRegime}"  rendered="#{varRU.indice == 1}"/>		        
+
+									<h:panelGrid columns="5" style="text-align:center;">
+						                <h:outputText value="" styleClass="label"/>	
+							                <h:outputText value="DENS." styleClass="label"/>
+							                <h:outputText value="ATIV." styleClass="label"/>				                
+							                <h:outputText value="APROV." styleClass="label"/>
+							                <h:outputText value="VOL." styleClass="label"/>
+							                
+						                <h:outputText value="Subunidade #{varRU.subunidade}" />
+						                
+    	            					<h:outputText value="#{varRU.densidade}" style="text-align:center;" rendered="#{varRU.densidade != 99}" />
+
+	    	            				<h:outputText value="-" style="text-align:center;" rendered="#{varRU.densidade == 99}"/>	    	            					
+	    	            						
+		                				<h:outputText value="#{varRU.atividade}" style="text-align:center;" rendered="#{varRU.atividade != 99.99}" >
+		                				   <f:convertNumber maxFractionDigits="1" minFractionDigits="1"/>
+		                				</h:outputText>
+
+		                				<h:outputText value="-" style="text-align:center;" rendered="#{varRU.atividade == 99.99}"/>	
+		                				
+	                					<h:outputText value="#{varRU.indiceAproveitamento}" style="text-align:center;" rendered="#{varRU.indiceAproveitamento != '999'}"/>
+
+	                					<h:outputText value="-" style="text-align:center;" rendered="#{varRU.indiceAproveitamento == '999'}"/>		                											                
+
+	                					<h:outputText value="#{varRU.volumetria}" style="text-align:center;" rendered="#{varRU.volumetria != '999 '}" />
+
+	                					<h:outputText value="-" style="text-align:center;" rendered="#{varRU.volumetria == '999 '}"/>		                						                			 
+	
+									</h:panelGrid>
+
+									<h:panelGrid columns="4" rendered="#{varItemDM.regimeUrbanisticoList.size() > 1}">
+						                <h:outputText value="Limite inicial:" style="text-align:left;"/>
+						                <h:outputText value="#{varRU.regimeUrbanisticoId.regUrbLimInicialAsString}" style="text-align:right;"  />
+						                <h:outputText value="Distância: "  style="text-align:left;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial != 0}" />					                
+						                <h:outputText value=""  style="text-align:left;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial == 0}" />					                						                
+						                <h:outputText value="#{varRU.regimeUrbanisticoId.regUrbDistInicialAsString} m" style="text-align:right;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial != 0}" />
+						                <h:outputText value="" style="text-align:right;" rendered="#{varRU.regimeUrbanisticoId.regUrbDistInicial == 0}" />						                
+						                <h:outputText value="Limite final:"  style="text-align:left;"/>
+						                <h:outputText value="#{varRU.regUrbLimFinalAsString} " style="text-align:right;"  />
+						                <h:outputText value="Distância: "  style="text-align:left;" rendered="#{varRU.regUrbDistFinal != 0}" />					                
+						                <h:outputText value=""  style="text-align:left;" rendered="#{varRU.regUrbDistFinal == 0}" />					                						                
+						                <h:outputText value="#{varRU.regUrbDistFinalAsString} m" style="text-align:right;" rendered="#{varRU.regUrbDistFinal != 0}" />
+					                </h:panelGrid>
+
+	                				
+	                				<h:panelGrid columns="1" style="text-align:left;">
+	                				
+	                					<h:outputText value="* Área de ocupação intensiva" rendered="#{documentoAction.macrozona != 8 and documentoAction.macrozona != 9 }" />
+	                						                				
+		                				<h:outputText value="* #{varRU.obsReg1Descricao}" rendered="#{!empty varRU.obsReg1Descricao}" />
+	    	            				<h:outputText value="* #{varRU.obsReg2Descricao}" rendered="#{!empty varRU.obsReg2Descricao}" />
+		    	           				<h:outputText value="* #{varRU.obsReg3Descricao}" rendered="#{!empty varRU.obsReg3Descricao}" />
+	            	    				<h:outputText value="* #{varRU.obsReg4Descricao}" rendered="#{!empty varRU.obsReg4Descricao}" />
+	                					<h:outputText value="* #{varRU.obsReg5Descricao}" rendered="#{!empty varRU.obsReg5Descricao}" />
+	                					<h:outputText value="* #{varRU.obsReg6Descricao}" rendered="#{!empty varRU.obsReg6Descricao}" />
+
+										<h:panelGrid rendered="#{!empty varRU.observacoesSubUnidadeList}">
+											<ui:repeat var="varObsSubUnidade"	value="#{varRU.observacoesSubUnidadeList}" >
+				                				<h:outputText value="* #{varObsSubUnidade}" /><br/>
+		    	   						    </ui:repeat>
+										</h:panelGrid>
+									
+	                				</h:panelGrid>	                				
+	                				
+       						    </ui:repeat>
+	                			<ui:repeat var="varCirculacao"  value="#{varItemDM.circulacaoList}"> 	
+	                				<h:panelGrid  columns="1" style="text-align:left;" rendered="#{!empty varItemDM.circulacaoList}">
+	                				
+		                				<h:outputText value="#{varItemDM.textoCirculacao}" rendered="#{varCirculacao.indice == 1}" />
+		                				<h:panelGroup>
+		    	            				<h:outputText value="Alinhamento " />
+		    	            				<h:outputText value="#{varCirculacao.alinhamento}m  #{varCirculacao.referencia}" style="text-transform:lowercase;"
+		    	            							  rendered="#{varCirculacao.alinhamento != '00,00' and varCirculacao.alinhamento != '99,99'}"/>
+		    	            				<h:outputText value="não informado" style="text-transform:lowercase;" rendered="#{varCirculacao.alinhamento == '00,00'}"/>
+		    	            				<h:outputText value="variável" style="text-transform:lowercase;" rendered="#{varCirculacao.alinhamento == '99,99'}"/>		    	            				
+		    	            							  
+	    	            				</h:panelGroup>
+	    	            				
+										<h:panelGroup rendered="#{varItemDM.circulacaoList.size() > 1}">
+											<h:panelGrid columns="2">
+								                <h:outputText value="Limite inicial:" style="text-align:left;"/>
+								                <h:outputText value="#{varCirculacao.circulacaoId.alinhamInicialAsString}" style="text-align:right;"  />
+								                <h:outputText value="Limite final:"  style="text-align:left;"/>
+								                <h:outputText value="#{varCirculacao.circulacaoId.alinhamFinalAsString} " style="text-align:right;"  />
+								            </h:panelGrid>
+						                </h:panelGroup>
+	    	            				
+	            	    				<h:outputText value="Largura do logradouro #{varCirculacao.larguraLogradouro}m" 
+	            	    							  rendered="#{varCirculacao.larguraLogradouro != '00,00' and varCirculacao.larguraLogradouro != '99,99'}"/>
+	            	    				<h:outputText value="Largura do logradouro não informada" rendered="#{varCirculacao.larguraLogradouro == '00,00'}"/>
+	            	    				<h:outputText value="Largura do logradouro variável" rendered="#{varCirculacao.larguraLogradouro == '99,99'}"/>
+	            	    							  
+	                					<h:outputText value="Pavimentação do passeio conforme decreto 17.302/2011" />
+	                					
+		                				<h:panelGrid columns="1" style="text-align:left;">
+			                				<h:outputText value="* #{varCirculacao.observacao1AsString}" rendered="#{!empty varCirculacao.observacao1AsString}" />
+			                				<h:outputText value="* #{varCirculacao.observacao2AsString}" rendered="#{!empty varCirculacao.observacao2AsString}" />
+			                				<h:outputText value="* #{varCirculacao.observacao3AsString}" rendered="#{!empty varCirculacao.observacao3AsString}" />
+			                			</h:panelGrid>			
+	                					
+									</h:panelGrid>                				
+       						    </ui:repeat>
+	        				  </h:panelGrid>									
+							</ui:repeat>
+							<h:panelGroup  rendered="#{documentoAction.observacoesFixasList.size() > 0}" >
+								<br />
+               					<h:outputText value="OBSERVAÇÕES"/>	
+               					<br />												
+							</h:panelGroup>
+
+                			<ui:repeat var="varObservacaoFixa"  value="#{documentoAction.observacoesFixasList}"> 			
+								<h:panelGrid columns="1" style="text-align:left;">                								
+	                				<h:outputText value="* #{varObservacaoFixa.descricao}" />                			
+	                			</h:panelGrid>
+   						    </ui:repeat>                			
+
+
+	</font>
+	</p:html>
+
+</p:document>
